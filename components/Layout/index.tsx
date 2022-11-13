@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styles from './styles.module.css';
 
 interface LayoutProps {
@@ -6,9 +6,7 @@ interface LayoutProps {
 }
 
 function Layout(props: LayoutProps) {
-  return (
-    <div>{props.children}</div>
-  )
+  return <div>{props.children}</div>;
 }
 
 export default Layout;
