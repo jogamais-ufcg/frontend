@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Quadras - Joga+ UFCG</title>
+        <title>Joga+ UFCG</title>
         <meta
           name="description"
           content="Todas as quadras da UFCG disponíveis para agendamento fácil pelo site"
@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Listagem de quadras</h1>
+      <h1>Home de login</h1>
     </div>
   );
 }
