@@ -16,7 +16,7 @@ function Layout(props: LayoutProps) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>{props.children}</div>;
+      <div>{props.children}</div>
     </>
   );
 }
