@@ -8,12 +8,12 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: 'Inter', sans-serif;
+  color: var(--white);
 }
 body {
   font-size: 100%;
   list-style-type: none;
   background-color: var(--blue-dark);
-  color: var(--white);
 }
 
 :root {
