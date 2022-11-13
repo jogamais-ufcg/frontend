@@ -5,7 +5,7 @@ export default function Register() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cadastrar - Joga+ UFCG</title>
+        <title>Cadastrar | Joga+ UFCG</title>
       </Head>
 
       <h1>Cadastrar</h1>
