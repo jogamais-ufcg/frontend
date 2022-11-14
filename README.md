@@ -19,7 +19,7 @@ O app tem como objetivo dar suporte ao trabalho dos funcionários do complexo es
 - [CSS Modules](https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules)
 - [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
-Com essas extensões instaladas, você precisa ter as seguinte configurações no seu vscode:
+Com essas extensões instaladas, você precisa ter as seguintes configurações no seu vscode:
 
 - Aperte `Ctrl + Shift + P` e digite `Preferences: Open Settings (JSON)`
 
