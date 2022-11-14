@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router';
 import logo from '../public/brand/logo.png';
 import Button from '../components/Button';
-import { useRouter } from 'next/router';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const router = useRouter();
