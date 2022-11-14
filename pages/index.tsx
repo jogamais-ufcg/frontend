@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { faSignIn } from '@fortawesome/free-solid-svg-icons';
 import logo from '../public/brand/logo.png';
 import Button from '../components/Button';
 import styles from '../styles/Home.module.css';
@@ -29,6 +30,7 @@ export default function Home() {
           color="secondary"
         />
         <Button
+          icon={faSignIn}
           onClick={() => router.push('/login')}
           type="button"
           label="Realizar login"

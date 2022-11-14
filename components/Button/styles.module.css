@@ -12,3 +12,8 @@
 .secondaryColor {
   background-color: var(--gray);
 }
+
+.container > svg {
+  width: 20px;
+  margin-right: 5px;
+}
