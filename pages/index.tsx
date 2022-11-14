@@ -3,8 +3,11 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import logo from '../public/brand/logo.png';
 import Button from '../components/Button';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
@@ -25,7 +28,11 @@ export default function Home() {
           label="👀 Dar uma olhadinha nas quadras"
           color="secondary"
         />
-        <Button type="button" label="Realizar login" />
+        <Button
+          onClick={() => router.push('/login')}
+          type="button"
+          label="Realizar login"
+        />
       </div>
 
       <div className={styles.footer}>
