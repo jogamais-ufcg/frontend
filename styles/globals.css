@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+:root {
+  --blue-dark: #233043;
+  --blue-light: #0e7fc1;
+  --blue-lighter: #38b6ff;
+  --blue-alternative: #70b2d8;
+  --white: #fff;
+  --gray: #3c4a5e;
+  --text-gray: #c8c8c8;
+  --red: #cb6060;
+}
+
 *,
 *:after,
 *:before {
@@ -23,13 +34,30 @@ button {
   border: none;
 }
 
-:root {
-  --blue-dark: #233043;
-  --blue-light: #0e7fc1;
-  --blue-lighter: #38b6ff;
-  --blue-alternative: #70b2d8;
-  --white: #fff;
-  --gray: #3c4a5e;
-  --text-gray: #c8c8c8;
-  --red: #cb6060;
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--text-gray);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--text-gray);
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--text-gray);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--text-gray);
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--text-gray);
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: var(--text-gray);
 }
