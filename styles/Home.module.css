@@ -53,3 +53,16 @@
   width: 100%;
   margin-top: 2rem;
 }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+.footer > a {
+  margin-left: 5px;
+  color: var(--blue-lighter);
+}

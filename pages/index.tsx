@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import logo from '../public/brand/logo.png';
 import Button from '../components/Button';
@@ -25,6 +26,11 @@ export default function Home() {
           color="secondary"
         />
         <Button type="button" label="Realizar login" />
+      </div>
+
+      <div className={styles.footer}>
+        <p>Não tem uma conta?</p>
+        <Link href="/cadastrar">Cadastre-se</Link>
       </div>
     </div>
   );
