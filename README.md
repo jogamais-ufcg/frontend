@@ -19,7 +19,13 @@ Se for a primeira vez que está executando o projeto, instale as dependências c
 npm install
 ```
 
-Para executar o projeto, execute o comando:
+Instale o husky no seu projeto:
+
+```bash
+npx husky install
+```
+
+Sempre que for executar o projeto, execute o comando:
 
 ```bash
 npm run dev
