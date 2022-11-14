@@ -10,10 +10,17 @@
   font-family: 'Inter', sans-serif;
   color: var(--white);
 }
+
 body {
   font-size: 100%;
   list-style-type: none;
   background-color: var(--blue-dark);
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--blue-light);
+  border: none;
 }
 
 :root {

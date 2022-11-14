@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import icon from '../public/brand/icon.png';
+import logo from '../public/brand/logo.png';
+import Button from '../components/Button';
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
-        <Image className={styles.logo} src={icon} alt="Joga Mais UFCG" />
+        <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
 
       <div className={styles.mainInformation}>
@@ -17,9 +18,13 @@ export default function Home() {
         </p>
       </div>
 
-      <div>
-        <button type="button">Dar uma olhadinha nas quadras</button>
-        <button type="button">Realizar login</button>
+      <div className={styles.buttonsContainer}>
+        <Button
+          type="button"
+          label="👀 Dar uma olhadinha nas quadras"
+          color="secondary"
+        />
+        <Button type="button" label="Realizar login" />
       </div>
     </div>
   );
