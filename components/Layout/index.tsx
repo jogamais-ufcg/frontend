@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
+import styles from './styles.module.css';
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,7 +20,7 @@ function Layout(props: LayoutProps) {
         <meta name="msapplication-navbutton-color" content="#233043" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#233043" />
       </Head>
-      <div>{props.children}</div>
+      <div className={styles.container}>{props.children}</div>
     </>
   );
 }
