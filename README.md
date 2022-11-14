@@ -1,8 +1,6 @@
 <p align="center">
-<img width="200px" src="./public/brand/logo.png" />
+<img width="200px" alt="Joga Mais UFCG" src="./public/brand/logo.png" />
 <p/>
-
-# Joga+ UFCG
 
 ## Sumário
 
