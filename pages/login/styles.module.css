@@ -16,7 +16,7 @@
   width: 35%;
 }
 
-.logo{
+.logo {
   width: 100%;
   height: auto;
 }
@@ -30,16 +30,14 @@
   margin-top: 2rem;
 }
 
-.inputContainer{
+.inputContainer {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
-  
 }
 
-.passwordInput{
+.passwordInput {
   margin-top: 1rem;
-
 }
 
 .redefinir {

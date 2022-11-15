@@ -16,7 +16,6 @@ export default function Login() {
       <Head>
         <title>Login | Joga+ UFCG</title>
       </Head>
-      
 
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
@@ -25,29 +24,29 @@ export default function Login() {
       <div className={styles.mainInformation}>
         <h1>Realizar Login</h1>
       </div>
-    
+
       <div className={styles.inputContainer}>
-      <Input
-        icon={faEnvelope}
-        label="Email"
-        placeholder="meumelhor@email.com"
-        type="email"
-      />
-        <div className={styles.passwordInput}>
         <Input
-          icon={faLock}
-          label="Senha"
-          placeholder="Digite sua senha"
-          type="password"
+          icon={faEnvelope}
+          label="Email"
+          placeholder="meumelhor@email.com"
+          type="email"
         />
+        <div className={styles.passwordInput}>
+          <Input
+            icon={faLock}
+            label="Senha"
+            placeholder="Digite sua senha"
+            type="password"
+          />
         </div>
       </div>
-    
+
       <div className={styles.redefinir}>
         <p>Esqueceu a senha?</p>
         <Link href="/redefinir-senha">Redefinir</Link>
       </div>
-      
+
       <div className={styles.buttonContainer}>
         <Button
           icon={faCheck}
