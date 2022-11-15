@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import Input from '../../components/Input';
 import styles from './styles.module.css';
 
 export default function Login() {
@@ -8,7 +10,12 @@ export default function Login() {
         <title>Login | Joga+ UFCG</title>
       </Head>
 
-      <h1>Login</h1>
+      <Input
+        icon={faEnvelope}
+        label="Email"
+        placeholder="meumelhor@email.com"
+        type="email"
+      />
     </div>
   );
 }
