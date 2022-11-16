@@ -6,7 +6,13 @@ import styles from './styles.module.css';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logo from '../../public/brand/logo.png';
-import { faEnvelope, faCircleUser, faPhone, faLock, faSignIn } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEnvelope,
+  faCircleUser,
+  faPhone,
+  faLock,
+  faSignIn,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Register() {
   const router = useRouter();
@@ -25,45 +31,49 @@ export default function Register() {
       </div>
 
       <div className={styles.inputsContainer}>
-
-          <Input
+        <Input
           icon={faEnvelope}
           label="Email"
           placeholder="meumelhor@email.com"
-          type="email"/>
+          type="email"
+        />
 
         <div className={styles.input}>
           <Input
-          icon={faCircleUser}
-          label="Nome Completo"
-          placeholder="Nome Completo"
-          type="text"/>
+            icon={faCircleUser}
+            label="Nome Completo"
+            placeholder="Nome Completo"
+            type="text"
+          />
         </div>
 
         <div className={styles.input}>
           <Input
-          icon={faPhone}
-          label="Telefone"
-          placeholder="(99) 9 9999-9999"
-          type="text"/>
+            icon={faPhone}
+            label="Telefone"
+            placeholder="(99) 9 9999-9999"
+            type="text"
+          />
         </div>
 
         <div className={styles.input}>
           <Input
-          icon={faLock}
-          label="Senha"
-          placeholder="Digite aqui sua senha"
-          type="password"/>
+            icon={faLock}
+            label="Senha"
+            placeholder="Digite aqui sua senha"
+            type="password"
+          />
         </div>
 
         <div className={styles.input}>
           <Input
-          icon={faLock}
-          label="Confirme sua Senha"
-          placeholder="Confirme sua senha"
-          type="password"/>
+            icon={faLock}
+            label="Confirme sua Senha"
+            placeholder="Confirme sua senha"
+            type="password"
+          />
         </div>
-      </div> 
+      </div>
 
       <div className={styles.confirmAluno}>
         <input type="checkbox" id="checkbox-1"></input>
