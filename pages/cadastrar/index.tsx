@@ -38,41 +38,33 @@ export default function Register() {
           type="email"
         />
 
-        <div className={styles.input}>
-          <Input
-            icon={faCircleUser}
-            label="Nome Completo"
-            placeholder="Nome Completo"
-            type="text"
-          />
-        </div>
+        <Input
+          icon={faCircleUser}
+          label="Nome Completo"
+          placeholder="Nome Completo"
+          type="text"
+        />
 
-        <div className={styles.input}>
-          <Input
-            icon={faPhone}
-            label="Telefone"
-            placeholder="(99) 9 9999-9999"
-            type="text"
-          />
-        </div>
+        <Input
+          icon={faPhone}
+          label="Telefone"
+          placeholder="(99) 9 9999-9999"
+          type="text"
+        />
 
-        <div className={styles.input}>
-          <Input
-            icon={faLock}
-            label="Senha"
-            placeholder="Digite aqui sua senha"
-            type="password"
-          />
-        </div>
+        <Input
+          icon={faLock}
+          label="Senha"
+          placeholder="Digite aqui sua senha"
+          type="password"
+        />
 
-        <div className={styles.input}>
-          <Input
-            icon={faLock}
-            label="Confirme sua Senha"
-            placeholder="Confirme sua senha"
-            type="password"
-          />
-        </div>
+        <Input
+          icon={faLock}
+          label="Confirme sua Senha"
+          placeholder="Confirme sua senha"
+          type="password"
+        />
       </div>
 
       <div className={styles.confirmAluno}>
