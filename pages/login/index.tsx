@@ -32,14 +32,13 @@ export default function Login() {
           placeholder="meumelhor@email.com"
           type="email"
         />
-        <div className={styles.passwordInput}>
-          <Input
-            icon={faLock}
-            label="Senha"
-            placeholder="Digite sua senha"
-            type="password"
-          />
-        </div>
+
+        <Input
+          icon={faLock}
+          label="Senha"
+          placeholder="Digite sua senha"
+          type="password"
+        />
       </div>
 
       <div className={styles.redefinir}>
