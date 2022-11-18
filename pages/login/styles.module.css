@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  width: 100%;
+  padding-top: 4rem;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.mainInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.inputContainer > div {
+  margin-top: 1rem;
+}
+
+.redefinir {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+.redefinir > a {
+  margin-left: 5px;
+  color: var(--blue-lighter);
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3.5rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 7.5rem;
+}
+
+.footer > a {
+  margin-left: 5px;
+  color: var(--blue-lighter);
+}
