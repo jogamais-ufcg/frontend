@@ -31,14 +31,12 @@ export default function RedefinirSenha() {
           type="password"
         />
 
-        <div className={styles.input}>
-          <Input
-            icon={faLock}
-            label="Confirme sua nova senha"
-            placeholder="Confirme sua senha"
-            type="password"
-          />
-        </div>
+        <Input
+          icon={faLock}
+          label="Confirme sua nova senha"
+          placeholder="Confirme sua senha"
+          type="password"
+        />
       </div>
 
       <div className={styles.button}>

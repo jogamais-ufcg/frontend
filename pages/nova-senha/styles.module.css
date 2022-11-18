@@ -34,9 +34,10 @@
   display: flex;
   padding-top: 3rem;
   flex-direction: column;
+  width: 100%;
 }
 
-.input {
+.inputsContainer > div {
   padding-top: 2rem;
 }
 
