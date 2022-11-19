@@ -2,15 +2,15 @@ import Head from 'next/head';
 import Input from '../../../components/Input';
 import styles from './styles.module.css';
 
-export default function SendIdentity() {
+export default function SendEnrollment() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Enviar RG | Joga+ UFCG</title>
+        <title>Enviar Matrícula | Joga+ UFCG</title>
       </Head>
 
       <Input
-        label="Frente do documento"
+        label="RDM ou outro documento similar"
         placeholder="Realizar upload do arquivo"
         type="file"
       />

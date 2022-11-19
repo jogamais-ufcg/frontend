@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import logo from '../../public/brand/logo.png';
 import { faLock, faSignIn } from '@fortawesome/free-solid-svg-icons';
 
-export default function RedefinirSenha() {
+export default function NewPassword() {
   const router = useRouter();
   return (
     <div className={styles.container}>
