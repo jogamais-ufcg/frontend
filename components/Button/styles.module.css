@@ -9,8 +9,16 @@
   font-size: 1rem;
 }
 
+.primaryColor {
+  background-color: var(--blue-light);
+}
+
 .secondaryColor {
   background-color: var(--gray);
+}
+
+.dangerColor {
+  background-color: var(--red);
 }
 
 .container > svg {

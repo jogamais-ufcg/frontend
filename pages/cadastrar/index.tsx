@@ -78,6 +78,7 @@ export default function Register() {
           onClick={() => router.push('/documentos')}
           type="button"
           label="Próxima etapa"
+          color="primary"
         />
       </div>
 

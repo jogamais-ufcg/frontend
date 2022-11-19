@@ -52,6 +52,7 @@ export default function Login() {
           onClick={() => router.push('/login')}
           type="button"
           label="Confirmar"
+          color="primary"
         />
       </div>
 
