@@ -69,7 +69,7 @@ export default function Register() {
 
       <div className={styles.confirmAluno}>
         <input type="checkbox" id="checkbox-1"></input>
-        <label htmlFor="checkbox-1">Confirmo que sou aluno(a) da UFCG</label>
+        <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>
 
       <div className={styles.button}>
