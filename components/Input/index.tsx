@@ -65,10 +65,13 @@ function Input({
       <label>{label}</label>
 
       <div>
-        {renderedIcon && <FontAwesomeIcon icon={renderedIcon} />}
+        {renderedIcon && !isFileInput && (
+          <FontAwesomeIcon icon={renderedIcon} />
+        )}
 
         {isFileInput && (
           <label htmlFor={fileInputId}>
+            {renderedIcon && <FontAwesomeIcon icon={renderedIcon} />}
             {selectedFile ? 'Documento selecionado.' : placeholder}
           </label>
         )}
