@@ -1,7 +1,5 @@
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
-import {
-  FontAwesomeIconProps,
-} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import { useMemo, useState } from 'react';
 
 export interface InputProps {
@@ -13,7 +11,13 @@ export interface InputProps {
   placeholder: string;
 }
 
-export function useFileInput({ onChange, icon, type, label, placeholder }: InputProps) {
+export function useFileInput({
+  onChange,
+  icon,
+  type,
+  label,
+  placeholder,
+}: InputProps) {
   const isFileInput = useMemo(() => type === 'file', [type]);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
@@ -52,13 +56,13 @@ export function useFileInput({ onChange, icon, type, label, placeholder }: Input
       return 'Documento selecionado.';
     }
 
-    return placeholder
+    return placeholder;
   }, [selectedFile, placeholder]);
 
   return {
     renderedIcon,
     fileInputId,
     handleInputChange,
-    fileInputLabel
-  }
+    fileInputLabel,
+  };
 }
