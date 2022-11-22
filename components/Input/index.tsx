@@ -1,60 +1,14 @@
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from '@fortawesome/react-fontawesome';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
-import { useMemo, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMemo } from 'react';
+import { useFileInput, InputProps } from './hooks';
 import styles from './styles.module.css';
 
-interface InputProps {
-  label: string;
-  placeholder: string;
-  type: 'text' | 'email' | 'password' | 'number' | 'file';
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  icon?: FontAwesomeIconProps['icon'];
-}
-
-function Input({
-  label,
-  placeholder,
-  type,
-  value,
-  onChange,
-  icon,
-}: InputProps) {
+function Input(props: InputProps) {
+  const { type, label, placeholder, value } = props;
   const isFileInput = useMemo(() => type === 'file', [type]);
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
-  const renderedIcon = useMemo(() => {
-    if (type === 'file') {
-      return faUpload;
-    }
-
-    return icon;
-  }, [icon, type]);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (isFileInput) {
-      const file = event.target.files?.[0];
-
-      if (file) {
-        setSelectedFile(file.name);
-      } else {
-        setSelectedFile(null);
-      }
-    }
-
-    onChange?.(event);
-  };
-
-  const fileInputId = useMemo(() => {
-    if (isFileInput) {
-      return label.replaceAll(' ', '-').toLowerCase();
-    }
-
-    return undefined;
-  }, [isFileInput, label]);
+  const { renderedIcon, fileInputId, handleInputChange, fileInputLabel } =
+    useFileInput(props);
 
   return (
     <div
@@ -72,7 +26,7 @@ function Input({
         {isFileInput && (
           <label htmlFor={fileInputId}>
             {renderedIcon && <FontAwesomeIcon icon={renderedIcon} />}
-            {selectedFile ? 'Documento selecionado.' : placeholder}
+            {fileInputLabel}
           </label>
         )}
         <input
