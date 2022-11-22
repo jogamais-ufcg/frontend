@@ -3,7 +3,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../components/Input';
 import styles from './styles.module.css';
 
-export default function RedefinirSenha() {
+export default function ResetPassword() {
   return (
     <div className={styles.container}>
       <Head>
