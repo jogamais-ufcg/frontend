@@ -1,10 +1,11 @@
+import { useMemo, useState } from 'react';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import { useMemo, useState } from 'react';
 
 export interface InputProps {
   value?: string;
   label: string;
+  mask?: string | (string | RegExp)[];
   type: 'text' | 'email' | 'password' | 'number' | 'file';
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: FontAwesomeIconProps['icon'];
