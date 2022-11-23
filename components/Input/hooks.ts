@@ -6,7 +6,7 @@ export interface InputProps {
   value?: string;
   label: string;
   mask?: string | (string | RegExp)[];
-  type: 'text' | 'email' | 'password' | 'number' | 'file';
+  type: 'text' | 'email' | 'password' | 'number' | 'file' | 'tel';
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: FontAwesomeIconProps['icon'];
   placeholder: string;

@@ -47,9 +47,10 @@ export default function Register() {
 
         <Input
           icon={faPhone}
-          label="Telefone"
-          placeholder="(99) 9 9999-9999"
-          type="text"
+          label="Número do Whatsapp"
+          mask="(99) 9 9999-9999"
+          placeholder="(99) 9 4002-8922"
+          type="tel"
         />
 
         <Input
