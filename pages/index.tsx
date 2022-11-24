@@ -34,7 +34,6 @@ export default function Home() {
           onClick={() => router.push('/login')}
           type="button"
           label="Realizar login"
-          color="primary"
         />
       </div>
 
