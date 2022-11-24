@@ -1,25 +1,25 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
-    width: 100%;
-    padding-top: 6rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  width: 100%;
+  padding-top: 6rem;
+}
 
 .logoContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
 
 .logo {
-    width: 100%;
-    height: auto;
-  }
+  width: 100%;
+  height: auto;
+}
 
 .handContainer {
   display: flex;
@@ -29,19 +29,19 @@
   width: 70%;
 }
 
-.hand{
+.hand {
   width: 75%;
   height: auto;
 }
 
 .mainInformation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
 .mainInformation > h1 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -65,4 +65,3 @@
   width: 100%;
   margin-top: 2rem;
 }
- 
