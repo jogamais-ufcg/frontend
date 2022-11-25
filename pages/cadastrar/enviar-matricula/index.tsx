@@ -1,19 +1,68 @@
-import Head from 'next/head';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import BackHeader from '../../../components/BackHeader';
+import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import PageContainer from '../../../components/PageContainer';
 import styles from './styles.module.css';
 
 export default function SendEnrollment() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Enviar Matrícula | Joga+ UFCG</title>
-      </Head>
+  const router = useRouter();
 
-      <Input
-        label="RDM ou outro documento similar"
-        placeholder="Realizar upload do arquivo"
-        type="file"
-      />
-    </div>
+  return (
+    <PageContainer headTitle="Enviar Matrícula">
+      <BackHeader title="Enviar documentos" />
+
+      <p className={styles.pageInformation}>
+        A administração da UFCG precisa validar os seus documentos para permitir
+        o seu cadastro na plataforma.
+      </p>
+
+      <div className={styles.inputsContainer}>
+        <div>
+          <h3>Seu comprovante de matrícula</h3>
+
+          <p>
+            Se você for aluno(a), envie um documento que comprove o seu vínculo
+            ativo com a universidade.
+          </p>
+        </div>
+
+        <Input
+          label="Número da matrícula"
+          type="number"
+          placeholder="Somente números"
+        />
+
+        <Input
+          label="Número do CPF"
+          type="tel"
+          placeholder="Somente números"
+          mask="999.999.999-99"
+        />
+
+        <Input
+          label="RDM ou outro documento similar"
+          placeholder="Realizar upload do arquivo"
+          type="file"
+        />
+      </div>
+
+      <div className={styles.button}>
+        <Button
+          icon={faCheck}
+          onClick={() => router.push('/cadastrar/sucesso')}
+          type="button"
+          label="Confirmar"
+          color="primary"
+        />
+      </div>
+
+      <div className={styles.footer}>
+        <p>Já tem uma conta?</p>
+        <Link href="/login">Fazer Login</Link>
+      </div>
+    </PageContainer>
   );
 }

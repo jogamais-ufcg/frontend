@@ -1,0 +1,50 @@
+.pageInformation {
+  color: var(--text-gray);
+  text-align: center;
+}
+
+.inputsContainer {
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputsContainer > div {
+  padding-top: 1rem;
+}
+
+.inputsContainer > div:nth-child(1) {
+  padding-bottom: 1rem;
+}
+
+.inputsContainer h3 {
+  margin-bottom: 0.5rem;
+}
+
+.inputsContainer p {
+  color: var(--text-gray);
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+.footer > a {
+  margin-left: 5px;
+  color: var(--blue-lighter);
+}
