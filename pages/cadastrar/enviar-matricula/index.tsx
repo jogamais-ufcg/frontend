@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import BackHeader from '../../../components/BackHeader';
 import Input from '../../../components/Input';
 import styles from './styles.module.css';
 
@@ -8,6 +9,8 @@ export default function SendEnrollment() {
       <Head>
         <title>Enviar Matrícula | Joga+ UFCG</title>
       </Head>
+
+      <BackHeader title="Enviar documentos" />
 
       <Input
         label="RDM ou outro documento similar"
