@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -16,6 +17,8 @@ import {
 
 export default function Register() {
   const router = useRouter();
+  const [isUFCGMember, setIsUFCGMember] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -69,18 +72,40 @@ export default function Register() {
       </div>
 
       <div className={styles.confirmAluno}>
-        <input type="checkbox" id="checkbox-1"></input>
+        <input
+          type="checkbox"
+          id="checkbox-1"
+          onClick={() => setIsUFCGMember(!isUFCGMember)}
+        ></input>
         <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>
 
       <div className={styles.button}>
-        <Button
-          icon={faSignIn}
-          onClick={() => router.push('/documentos')}
-          type="button"
-          label="Próxima etapa"
-          color="primary"
-        />
+        {isUFCGMember ? (
+          <>
+            <Button
+              onClick={() => router.push('/cadastrar/enviar-matricula')}
+              type="button"
+              label="Sou aluno(a)"
+              color="primary"
+            />
+
+            <Button
+              onClick={() => router.push('/cadastrar/enviar-rg')}
+              type="button"
+              label="Sou servidor(a)"
+              color="secondary"
+            />
+          </>
+        ) : (
+          <Button
+            icon={faSignIn}
+            onClick={() => router.push('/cadastrar/enviar-rg')}
+            type="button"
+            label="Próxima etapa"
+            color="primary"
+          />
+        )}
       </div>
 
       <div className={styles.footer}>
