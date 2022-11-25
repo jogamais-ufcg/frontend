@@ -1,4 +1,4 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import BackHeader from '../../../components/BackHeader';
@@ -30,12 +30,14 @@ export default function SendEnrollment() {
         </div>
 
         <Input
+          icon={faUserCircle}
           label="Número da matrícula"
           type="number"
           placeholder="Somente números"
         />
 
         <Input
+          icon={faUserCircle}
           label="Número do CPF"
           type="tel"
           placeholder="Somente números"
