@@ -1,15 +1,10 @@
-import Head from 'next/head';
 import BackHeader from '../../../components/BackHeader';
 import Input from '../../../components/Input';
-import styles from './styles.module.css';
+import PageContainer from '../../../components/PageContainer';
 
 export default function SendEnrollment() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Enviar Matrícula | Joga+ UFCG</title>
-      </Head>
-
+    <PageContainer headTitle="Enviar Matrícula">
       <BackHeader title="Enviar documentos" />
 
       <Input
@@ -17,6 +12,6 @@ export default function SendEnrollment() {
         placeholder="Realizar upload do arquivo"
         type="file"
       />
-    </div>
+    </PageContainer>
   );
 }
