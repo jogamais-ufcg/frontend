@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -25,6 +27,7 @@
     "@types/react-dom": "18.0.8",
     "@types/react-input-mask": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "cypress": "^11.2.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.5.0",
