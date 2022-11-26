@@ -14,6 +14,6 @@ export default defineConfig({
     },
     video: true,
     screenshotOnRunFailure: true,
-    baseUrl: process.env.VERCEL_URL || "http://localhost:3000",
+    baseUrl: "http://localhost:3000",
   },
 });
