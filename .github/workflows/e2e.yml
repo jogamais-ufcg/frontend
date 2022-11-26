@@ -2,7 +2,7 @@ name: e2e
 
 on: deployment
 jobs:
-  regression:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
