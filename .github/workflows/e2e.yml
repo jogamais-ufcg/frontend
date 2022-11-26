@@ -13,3 +13,9 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           repo: frontend&teamId=team_rFlRlf8NcwLEZpGoaDbsQYSl
+      - name: Upload video tests results
+        uses: actions/upload-artifact@v1
+        if: always() # / if: failure() <- more suitable for production
+        with:
+          name: cypress-videos
+          path: cypress/videos
