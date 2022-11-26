@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from './styles.module.css';
+import ufcg from '../../public/brand/ufcg.png';
+import prac from '../../public/brand/prac.png';
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,7 +11,7 @@ interface LayoutProps {
 
 function Layout(props: LayoutProps) {
   return (
-    <>
+    <div className={styles.appWrapper}>
       <Head>
         <title>Joga+ UFCG</title>
         <meta
@@ -72,8 +75,14 @@ function Layout(props: LayoutProps) {
           content="https://jogamais.vercel.app/icons/apple-touch-icon.png"
         />
       </Head>
+
       <div className={styles.container}>{props.children}</div>
-    </>
+
+      <footer className={styles.footer}>
+        <Image src={prac} alt="Pro-Reitoria de Assuntos Comunitários" />
+        <Image src={ufcg} alt="Universidade Federal de Campina Grande" />
+      </footer>
+    </div>
   );
 }
 
