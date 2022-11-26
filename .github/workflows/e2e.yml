@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests on preview deployment
-        uses: mikefrancis/vercel-cypress@v1
+        uses: jogamais-ufcg/vercel-cypress-action@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           repo: my-repo
