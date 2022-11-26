@@ -5,6 +5,8 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Run tests on preview deployment
         uses: jogamais-ufcg/vercel-cypress-action@v1
         with:
