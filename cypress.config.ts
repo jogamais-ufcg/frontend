@@ -12,8 +12,8 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    video: false,
-    screenshotOnRunFailure: false,
+    video: true,
+    screenshotOnRunFailure: true,
     baseUrl: process.env.VERCEL_URL || "http://localhost:3000",
   },
 });
