@@ -38,3 +38,6 @@ next-env.d.ts
 # PWA
 public/*.js
 public/*.js.map
+
+# Cypress
+/cypress/videos

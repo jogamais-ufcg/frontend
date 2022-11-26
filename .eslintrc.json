@@ -9,5 +9,11 @@
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error"
   },
-  "ignorePatterns": ["node_modules/", ".next/", "public/"]
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "public/",
+    "cypress/",
+    "cypress.config.ts"
+  ]
 }

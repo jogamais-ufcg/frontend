@@ -1,12 +1,14 @@
 {
   "name": "joga-mais",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open",
+    "tests": "cypress run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -20,16 +22,19 @@
     "react-input-mask": "^2.0.4"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.0",
     "@types/node": "18.11.7",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "@types/react-input-mask": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "cypress": "^11.2.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.2",
     "prettier": "^2.7.1",
+    "start-server-and-test": "^1.14.0",
     "typescript": "4.8.4"
   }
 }
