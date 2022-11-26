@@ -1,6 +1,7 @@
 name: e2e
 
 on: deployment
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
@@ -8,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run tests on preview deployment
-        uses: mikefrancis/vercel-cypress@v1
+        uses: ./.github/actions/e2e
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          repo: jogamais-ufcg/frontend
+          repo: frontend&teamId=team_rFlRlf8NcwLEZpGoaDbsQYSl
