@@ -11,11 +11,11 @@ function PageContainer({ children, headTitle = '' }: PageContainerProps) {
   const title = useMemo(() => {
     const defaultTitle = 'Joga+ UFCG';
 
-    if (typeof headTitle !== 'string') {
+    if (!headTitle || typeof headTitle !== 'string') {
       return defaultTitle;
     }
 
-    return headTitle ? `${headTitle} | ${defaultTitle}` : defaultTitle;
+    return `${headTitle} | ${defaultTitle}`;
   }, [headTitle]);
 
   return (
