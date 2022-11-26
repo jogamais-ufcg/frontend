@@ -9,4 +9,5 @@ const nextConfig = {
   swcMinify: true,
 };
 
-module.exports = withPWA(nextConfig);
+module.exports =
+  process.env.NODE_ENV === 'production' ? withPWA(nextConfig) : nextConfig;
