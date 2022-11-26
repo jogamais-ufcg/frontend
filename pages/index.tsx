@@ -5,12 +5,13 @@ import { faSignIn } from '@fortawesome/free-solid-svg-icons';
 import logo from '../public/brand/logo.png';
 import Button from '../components/Button';
 import styles from '../styles/Home.module.css';
+import PageContainer from '../components/PageContainer';
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
+    <PageContainer headTitle="Início">
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
@@ -42,6 +43,6 @@ export default function Home() {
         <p>Não tem uma conta?</p>
         <Link href="/cadastrar">Cadastre-se</Link>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { faEnvelope, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../components/Input';
 import styles from './styles.module.css';
@@ -7,16 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import logo from '../../public/brand/logo.png';
 import Button from '../../components/Button';
+import PageContainer from '../../components/PageContainer';
 
 export default function Login() {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Login | Joga+ UFCG</title>
-      </Head>
-
+    <PageContainer headTitle="Login">
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
@@ -60,6 +56,6 @@ export default function Login() {
         <p>Não tem uma conta?</p>
         <Link href="/cadastrar">Cadastrar-se</Link>
       </div>
-    </div>
+    </PageContainer>
   );
 }
