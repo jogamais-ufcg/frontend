@@ -1,8 +1,6 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  projectId: 'adujd8',
-
   component: {
     devServer: {
       framework: "next",
@@ -16,6 +14,6 @@ export default defineConfig({
     },
     video: true,
     screenshotOnRunFailure: true,
-    baseUrl: process.env.VERCEL_URL || "http://localhost:3000",
+    baseUrl: "http://localhost:3000",
   },
 });
