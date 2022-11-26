@@ -56,3 +56,21 @@ npm run dev
 ```
 
 O site estará disponível em [http://localhost:3000](http://localhost:3000).
+
+## Testando o app
+
+Primeiro o site deve estar rodando.
+
+```bash
+npm run dev
+```
+
+Em seguida, basta rodar o testes do cypress.
+
+```bash
+npm run tests
+```
+
+Se seu teste teve sucesso você verá algo como isso:
+
+<img alt="Joga Mais UFCG" src="./.github/assets/cypress.png" />
