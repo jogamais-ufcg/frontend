@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -14,17 +13,14 @@ import {
   faLock,
   faSignIn,
 } from '@fortawesome/free-solid-svg-icons';
+import PageContainer from '../../components/PageContainer';
 
 export default function Register() {
   const router = useRouter();
   const [isUFCGMember, setIsUFCGMember] = useState(false);
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Cadastrar | Joga+ UFCG</title>
-      </Head>
-
+    <PageContainer headTitle="Cadastrar">
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
@@ -112,6 +108,6 @@ export default function Register() {
         <p>Já tem uma conta?</p>
         <Link href="/login">Fazer Login</Link>
       </div>
-    </div>
+    </PageContainer>
   );
 }

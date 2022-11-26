@@ -5,12 +5,13 @@ import logo from '../../../public/brand/logo.png';
 import hand from '../../../public/illustrations/hand.svg';
 import styles from './styles.module.css';
 import Button from '../../../components/Button';
+import PageContainer from '../../../components/PageContainer';
 
 export default function ResetPasswordSucess() {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
+    <PageContainer headTitle="Redefinir senha">
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
@@ -39,6 +40,6 @@ export default function ResetPasswordSucess() {
           color="secondary"
         />
       </div>
-    </div>
+    </PageContainer>
   );
 }

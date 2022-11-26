@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from './styles.module.css';
@@ -6,15 +5,12 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logo from '../../public/brand/logo.png';
 import { faLock, faSignIn } from '@fortawesome/free-solid-svg-icons';
+import PageContainer from '../../components/PageContainer';
 
 export default function NewPassword() {
   const router = useRouter();
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Redefinir Senha | Joga+ UFCG</title>
-      </Head>
-
+    <PageContainer headTitle="Redefinir senha">
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
@@ -47,6 +43,6 @@ export default function NewPassword() {
           label="Confirmar redefinição"
         />
       </div>
-    </div>
+    </PageContainer>
   );
 }
