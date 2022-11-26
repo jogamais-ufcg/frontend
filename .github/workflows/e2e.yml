@@ -5,7 +5,8 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/vercel-cypress@v1
+      - name: Run tests on preview deployment
+        uses: mikefrancis/vercel-cypress@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           repo: my-repo
