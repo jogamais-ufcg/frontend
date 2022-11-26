@@ -12,6 +12,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    video: process.env.NODE_ENV === "production",
+    video: false,
+    screenshotOnRunFailure: false,
   },
 });
