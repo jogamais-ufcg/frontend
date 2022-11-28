@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "cypress": "cypress open",
-    "tests": "cypress run"
+    "test": "cypress run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
