@@ -1,10 +1,12 @@
-import { faEnvelope, faCircleUser, faCheck, faPhone, faBan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEnvelope,
+  faCircleUser,
+  faPhone,
+  faBan,
+} from '@fortawesome/free-solid-svg-icons';
 import Input from '../../components/Input';
 import styles from './styles.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import logo from '../../public/brand/logo.png';
 import Button from '../../components/Button';
 import PageContainer from '../../components/PageContainer';
 import BackHeader from '../../components/BackHeader';
@@ -14,8 +16,7 @@ export default function Login() {
 
   return (
     <PageContainer headTitle="Login">
-    
-      <BackHeader title='Ver Detalhes'></BackHeader>
+      <BackHeader title="Ver Detalhes"></BackHeader>
 
       <div className={styles.inputContainer}>
         <Input
@@ -39,13 +40,12 @@ export default function Login() {
           placeholder="(99) 9 9999-9999"
           type="tel"
         />
-
       </div>
 
       <div className={styles.buttonContainer}>
         <Button
           icon={faPhone}
-          onClick={() => router.push('/login')} //ajustar rota! 
+          onClick={() => router.push('/login')} //ajustar rota!
           type="button"
           label="Enviar mensagem"
           color="primary"
@@ -59,7 +59,7 @@ export default function Login() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faBan}
-          onClick={() => router.push('/login')} //ajustar rota! 
+          onClick={() => router.push('/login')} //ajustar rota!
           type="button"
           label="Bloquear "
           color="secondary"
