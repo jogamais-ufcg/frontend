@@ -13,11 +13,18 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 46px;
   border: solid 2px var(--gray);
   padding: 0 1rem;
   margin-top: 10px;
   border-radius: 15px;
+}
+
+.inputContainer {
+  height: 46px;
+}
+
+.textareaContainer {
+  min-height: 80px;
 }
 
 .container svg {
@@ -34,6 +41,15 @@
 }
 
 .container input {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.container textarea {
   width: 100%;
   height: 100%;
   background: none;

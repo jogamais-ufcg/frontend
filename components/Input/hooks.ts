@@ -1,13 +1,17 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
+
+type OnChangeEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
 
 export interface InputProps {
   value?: string;
   label: string;
   mask?: string | (string | RegExp)[];
-  type: 'text' | 'email' | 'password' | 'number' | 'file' | 'tel';
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  type: 'text' | 'email' | 'password' | 'number' | 'file' | 'tel' | 'textarea';
+  onChange?: (event: OnChangeEvent) => void;
   icon?: FontAwesomeIconProps['icon'];
   placeholder: string;
 }
@@ -30,8 +34,8 @@ export function useFileInput({
     return icon;
   }, [icon, type]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (isFileInput) {
+  const handleInputChange = (event: OnChangeEvent) => {
+    if (isFileInput && 'files' in event.target) {
       const file = event.target.files?.[0];
 
       if (file) {

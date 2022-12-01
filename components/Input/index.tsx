@@ -11,15 +11,39 @@ function Input(props: InputProps) {
   const { renderedIcon, fileInputId, handleInputChange, fileInputLabel } =
     useFileInput(props);
 
+  const InputComponent = () => {
+    if (type === 'textarea') {
+      return (
+        <textarea
+          placeholder={placeholder}
+          value={value}
+          onChange={handleInputChange}
+        />
+      );
+    }
+
+    return (
+      <input
+        id={fileInputId}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleInputChange}
+      />
+    );
+  };
+
   return (
     <div
-      className={`${styles.container} ${
-        isFileInput ? styles.isFileInput : undefined
-      }`}
+      className={`${styles.container} ${isFileInput ? styles.isFileInput : ''}`}
     >
       <label>{label}</label>
 
-      <div>
+      <div
+        className={`${
+          type === 'textarea' ? styles.textareaContainer : styles.inputContainer
+        }`}
+      >
         {renderedIcon && !isFileInput && (
           <FontAwesomeIcon icon={renderedIcon} />
         )}
@@ -40,13 +64,7 @@ function Input(props: InputProps) {
             onChange={handleInputChange}
           />
         ) : (
-          <input
-            id={fileInputId}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={handleInputChange}
-          />
+          <InputComponent />
         )}
       </div>
     </div>
