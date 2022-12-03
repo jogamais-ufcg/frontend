@@ -9,5 +9,4 @@ const nextConfig = {
   swcMinify: true,
 };
 
-module.exports =
-  process.env.NODE_ENV === 'production' ? withPWA(nextConfig) : nextConfig;
+module.exports = !!process.env.VERCEL_URL ? withPWA(nextConfig) : nextConfig;
