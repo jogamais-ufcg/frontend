@@ -13,9 +13,9 @@ export default function Login() {
 
   return (
     <PageContainer headTitle="Login">
-      <div className={styles.logoContainer}>
+      <Link href="/" className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
-      </div>
+      </Link>
 
       <div className={styles.mainInformation}>
         <h1>Realizar Login</h1>

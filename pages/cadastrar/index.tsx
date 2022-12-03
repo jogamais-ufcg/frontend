@@ -21,9 +21,9 @@ export default function Register() {
 
   return (
     <PageContainer headTitle="Cadastrar">
-      <div className={styles.logoContainer}>
+      <Link href="/" className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
-      </div>
+      </Link>
 
       <div className={styles.mainInformation}>
         <h1>Realizar Cadastro</h1>
