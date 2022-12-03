@@ -11,12 +11,12 @@ export default function Login() {
 
   return (
     <PageContainer headTitle="Login">
-      <BackHeader title='Mais informações'></BackHeader>
+      <BackHeader title="Mais informações"></BackHeader>
 
-      <Input 
-      label="Lista de Jogadores"
-      placeholder='Preencher com espaços separados por vírgulas ou adicionando novas linhas.'
-      type="textarea"
+      <Input
+        label="Lista de Jogadores"
+        placeholder="Preencher com espaços separados por vírgulas ou adicionando novas linhas."
+        type="textarea"
       />
 
       <div className={styles.buttonContainer}>
@@ -28,7 +28,6 @@ export default function Login() {
           color="primary"
         />
       </div>
-
     </PageContainer>
   );
 }

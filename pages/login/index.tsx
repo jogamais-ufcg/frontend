@@ -1,12 +1,12 @@
 import { faEnvelope, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
-import Input from '../../components/Input';
 import styles from './styles.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import logo from '../../public/brand/logo.png';
-import Button from '../../components/Button';
-import PageContainer from '../../components/PageContainer';
+import logo from 'public/brand/logo.png';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import PageContainer from 'components/PageContainer';
 
 export default function Login() {
   const router = useRouter();
