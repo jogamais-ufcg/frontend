@@ -1,3 +1,14 @@
+.inputsContainer {
+  display: flex;
+  padding-top: 1rem;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputsContainer > div {
+  padding-top: 1rem;
+}
+
 .buttonContainer {
   display: flex;
   flex-direction: column;
