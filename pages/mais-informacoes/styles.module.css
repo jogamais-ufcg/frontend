@@ -1,11 +1,20 @@
 .inputsContainer {
   display: flex;
-  padding-top: 1rem;
   flex-direction: column;
   width: 100%;
 }
 
-.inputsContainer > div {
+.textArea {
+  padding-top: 1rem;
+}
+
+.adminInputsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.adminInputsContainer > div {
   padding-top: 1rem;
 }
 

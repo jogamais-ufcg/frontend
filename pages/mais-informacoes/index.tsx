@@ -10,42 +10,50 @@ import { useRouter } from 'next/router';
 import Button from '../../components/Button';
 import PageContainer from '../../components/PageContainer';
 import BackHeader from 'components/BackHeader';
+import { useState } from 'react';
 
-export default function Login() {
+export default function MoreInformation() {
+  const [isUser] = useState(false);
   const router = useRouter();
 
   return (
-    <PageContainer headTitle="Login">
+    <PageContainer headTitle="MoreInformation">
       <BackHeader title="Mais informações"></BackHeader>
 
       <div className={styles.inputsContainer}>
-        <Input
-          icon={faEnvelope}
-          label="Email"
-          placeholder="meumelhor@email.com"
-          type="email"
-        />
+        {!isUser && (
+          <div className={styles.adminInputsContainer}>
+            <Input
+              icon={faEnvelope}
+              label="Email"
+              placeholder="meumelhor@email.com"
+              type="email"
+            />
 
-        <Input
-          icon={faCircleUser}
-          label="Nome Completo"
-          placeholder="Nome Completo"
-          type="text"
-        />
+            <Input
+              icon={faCircleUser}
+              label="Nome Completo"
+              placeholder="Nome Completo"
+              type="text"
+            />
 
-        <Input
-          icon={faPhone}
-          label="Número do Whatsapp"
-          mask="(99) 9 9999-9999"
-          placeholder="(99) 9 4002-8922"
-          type="tel"
-        />
+            <Input
+              icon={faPhone}
+              label="Número do Whatsapp"
+              mask="(99) 9 9999-9999"
+              placeholder="(99) 9 4002-8922"
+              type="tel"
+            />
+          </div>
+        )}
 
-        <Input
-          label="Lista de Jogadores"
-          placeholder="Preencher com espaços separados por vírgulas ou adicionando novas linhas."
-          type="textarea"
-        />
+        <div className={styles.textArea}>
+          <Input
+            label="Lista de Jogadores"
+            placeholder="Preencher com espaços separados por vírgulas ou adicionando novas linhas."
+            type="textarea"
+          />
+        </div>
       </div>
 
       <div className={styles.buttonContainer}>
