@@ -14,7 +14,7 @@ import BackHeader from 'components/BackHeader';
 import { useState } from 'react';
 
 export default function EditProfile() {
-  const [isAluno] = useState(true);
+  const [isStudent] = useState(true);
   const router = useRouter();
 
   return (
@@ -29,7 +29,7 @@ export default function EditProfile() {
             placeholder="Nome Completo"
             type="text"
           />
-          {isAluno && (
+          {isStudent && (
             <p>
               <FontAwesomeIcon
                 icon={faGraduationCap}
