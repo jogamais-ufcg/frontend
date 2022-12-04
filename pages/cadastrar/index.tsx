@@ -14,10 +14,49 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import PageContainer from '../../components/PageContainer';
 import { useRegisterFlow } from 'contexts/registerFlow';
+import { useEffect, useState } from 'react';
 
 export default function Register() {
   const router = useRouter();
   const flow = useRegisterFlow();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [cellphone, setCellphone] = useState('');
+  const [isUFCGMember, setIsUFCGMember] = useState(false);
+
+  useEffect(() => {
+    if (flow.firstStepData) {
+      setName(flow.firstStepData.name);
+      setEmail(flow.firstStepData.email);
+      setPassword(flow.firstStepData.password);
+      setCellphone(flow.firstStepData.cellphone);
+      setIsUFCGMember(flow.firstStepData.isUFCGMember);
+    }
+  }, [flow.firstStepData]);
+
+  const onSubmitFirstStep = (isStudent = false) => {
+    if (password !== confirmPassword) {
+      alert('Senhas não conferem');
+      return;
+    }
+
+    flow.confirmFirstStep({
+      name,
+      email,
+      password,
+      cellphone,
+      isUFCGMember,
+    });
+
+    if (isStudent) {
+      router.push('/cadastrar/enviar-matricula');
+    } else {
+      router.push('/cadastrar/enviar-rg');
+    }
+  };
 
   return (
     <PageContainer headTitle="Cadastrar">
@@ -35,8 +74,8 @@ export default function Register() {
           label="Email"
           placeholder="meumelhor@email.com"
           type="email"
-          value={flow.email}
-          onChange={(e) => flow.setEmail(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <Input
@@ -44,8 +83,8 @@ export default function Register() {
           label="Nome Completo"
           placeholder="Nome Completo"
           type="text"
-          value={flow.name}
-          onChange={(e) => flow.setName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
 
         <Input
@@ -54,8 +93,8 @@ export default function Register() {
           mask="(99) 9 9999-9999"
           placeholder="(99) 9 4002-8922"
           type="tel"
-          value={flow.cellphone}
-          onChange={(e) => flow.setCellphone(e.target.value)}
+          value={cellphone}
+          onChange={(e) => setCellphone(e.target.value)}
         />
 
         <Input
@@ -63,8 +102,8 @@ export default function Register() {
           label="Senha"
           placeholder="Digite aqui sua senha"
           type="password"
-          value={flow.password}
-          onChange={(e) => flow.setPassword(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <Input
@@ -72,8 +111,8 @@ export default function Register() {
           label="Confirme sua Senha"
           placeholder="Confirme sua senha"
           type="password"
-          value={flow.confirmPassword}
-          onChange={(e) => flow.setConfirmPassword(e.target.value)}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 
@@ -81,23 +120,24 @@ export default function Register() {
         <input
           type="checkbox"
           id="checkbox-1"
-          onClick={() => flow.setIsUFCGMember(!flow.isUFCGMember)}
+          checked={isUFCGMember}
+          onClick={() => setIsUFCGMember(!isUFCGMember)}
         ></input>
         <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>
 
       <div className={styles.button}>
-        {flow.isUFCGMember ? (
+        {isUFCGMember ? (
           <>
             <Button
-              onClick={() => router.push('/cadastrar/enviar-matricula')}
+              onClick={() => onSubmitFirstStep(true)}
               type="button"
               label="Sou aluno(a)"
               color="primary"
             />
 
             <Button
-              onClick={() => router.push('/cadastrar/enviar-rg')}
+              onClick={() => onSubmitFirstStep()}
               type="button"
               label="Sou servidor(a)"
               color="secondary"
@@ -106,7 +146,7 @@ export default function Register() {
         ) : (
           <Button
             icon={faSignIn}
-            onClick={() => router.push('/cadastrar/enviar-rg')}
+            onClick={() => onSubmitFirstStep()}
             type="button"
             label="Próxima etapa"
             color="primary"

@@ -30,6 +30,7 @@
 .container svg {
   width: 20px;
   margin-right: 10px;
+  color: black;
 }
 
 .container label {

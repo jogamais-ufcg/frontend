@@ -1,22 +1,34 @@
 import { createContext, useState, useContext } from 'react';
-import { CreateUser } from 'schemas/user';
 import api from 'services/api';
 
+interface FirstStepData {
+  name: string;
+  email: string;
+  password: string;
+  cellphone: string;
+  isUFCGMember: boolean;
+}
+
+type SecondStepData =
+  | {
+      cpf: string;
+      documentFront: File;
+      documentBack: File;
+    }
+  | {
+      cpf: string;
+      enrollment: string;
+      enrollmentDocument: File;
+    };
+
 type RegisterFlowContextType =
-  | (CreateUser & {
-      setName: (name: string) => void;
-      setEmail: (email: string) => void;
-      setPassword: (password: string) => void;
-      setConfirmPassword: (confirmPassword: string) => void;
-      setCellphone: (cellphone: string) => void;
-      setCpf: (cpf: string) => void;
-      setDocumentFront: (documentFront: File | null) => void;
-      setDocumentBack: (documentBack: File | null) => void;
-      setIsUFCGMember: (isUFCGMember: boolean) => void;
-      onSubmit: (payload: CreateUser, onSuccess: () => void) => Promise<void>;
+  | {
+      firstStepData?: FirstStepData;
+      confirmFirstStep: (data: FirstStepData) => void;
+      confirmRegistration: (data: SecondStepData) => Promise<boolean>;
       error: string | null;
       loading: boolean;
-    })
+    }
   | undefined;
 
 const RegisterFlowContext = createContext<RegisterFlowContextType>(undefined);
@@ -26,55 +38,41 @@ interface RegisterFlowProviderProps {
 }
 
 export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [cellphone, setCellphone] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [documentFront, setDocumentFront] = useState<File | null>(null);
-  const [documentBack, setDocumentBack] = useState<File | null>(null);
-  const [isUFCGMember, setIsUFCGMember] = useState(false);
+  const [firstStepData, setFirstStepData] = useState<FirstStepData>();
 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (payload: CreateUser, onSuccess: () => void) => {
+  const confirmRegistration = async (data: SecondStepData) => {
+    if (!firstStepData || !data) {
+      return false;
+    }
+
+    setError(null);
     setLoading(true);
-    const { error: errorMessage } = await api.user.create(payload);
+    const { error: errorMessage } = await api.user.create({
+      ...firstStepData,
+      ...data,
+    });
     setLoading(false);
 
     if (errorMessage) {
       setError(errorMessage);
-    } else {
-      onSuccess();
+      return false;
     }
+
+    setFirstStepData(undefined);
+    return true;
   };
 
   return (
     <RegisterFlowContext.Provider
       value={{
-        name,
-        email,
-        password,
-        confirmPassword,
-        cellphone,
-        cpf,
-        documentFront,
-        documentBack,
-        isUFCGMember,
-        setName,
-        setEmail,
-        setPassword,
-        setConfirmPassword,
-        setCellphone,
-        setCpf,
-        setDocumentFront,
-        setDocumentBack,
-        setIsUFCGMember,
+        firstStepData,
+        confirmFirstStep: setFirstStepData,
+        confirmRegistration,
         error,
         loading,
-        onSubmit,
       }}
     >
       {children}
