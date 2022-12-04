@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useRegisterFlow } from 'contexts/registerFlow';
 import Link from 'next/link';
@@ -7,7 +8,6 @@ import Button from 'components/Button';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
 import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
 
 export default function SendEnrollment() {
   const router = useRouter();
@@ -16,6 +16,12 @@ export default function SendEnrollment() {
   const [cpf, setCpf] = useState('');
   const [enrollment, setEnrollment] = useState('');
   const [enrollmentDocument, setEnrollmentDocument] = useState<File>();
+
+  useEffect(() => {
+    if (!flow.firstStepData) {
+      router.replace('/cadastrar');
+    }
+  }, [router, flow]);
 
   const onSubmit = async () => {
     if (enrollmentDocument === undefined) {
@@ -35,12 +41,6 @@ export default function SendEnrollment() {
 
     router.push('/cadastrar/sucesso');
   };
-
-  useEffect(() => {
-    if (flow.error) {
-      alert(flow.error);
-    }
-  }, [flow.error]);
 
   return (
     <PageContainer headTitle="Enviar Matrícula">

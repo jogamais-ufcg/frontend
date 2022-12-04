@@ -17,6 +17,12 @@ export default function SendIdentity() {
   const [documentFront, setDocumentFront] = useState<File>();
   const [documentBack, setDocumentBack] = useState<File>();
 
+  useEffect(() => {
+    if (!flow.firstStepData) {
+      router.replace('/cadastrar');
+    }
+  }, [router, flow]);
+
   const onSubmit = async () => {
     if (documentFront === undefined || documentBack === undefined) {
       alert('É necessário enviar os dois lados do documento');
@@ -35,12 +41,6 @@ export default function SendIdentity() {
 
     router.push('/cadastrar/sucesso');
   };
-
-  useEffect(() => {
-    if (flow.error) {
-      alert(flow.error);
-    }
-  }, [flow.error]);
 
   return (
     <PageContainer headTitle="Enviar RG">

@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import api from 'services/api';
 
 interface FirstStepData {
@@ -64,6 +64,13 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
     setFirstStepData(undefined);
     return true;
   };
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      setError(null);
+    }
+  }, [error]);
 
   return (
     <RegisterFlowContext.Provider
