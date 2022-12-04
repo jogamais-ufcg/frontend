@@ -77,7 +77,7 @@ function Layout(props: LayoutProps) {
         />
       </Head>
 
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <div className={styles.container}>{props.children}</div>
 
       <footer className={styles.footer}>
