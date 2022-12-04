@@ -1,0 +1,40 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainer {
+  margin-top: 1rem;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.nomeContainer > p {
+  color: var(--blue-lighter);
+  font-size: 1rem;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+.celularContainer {
+  margin-top: 2rem;
+}
+
+.celularContainer > p {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+  color: var(--text-gray);
+}
+
+.graduationCap {
+  width: 1.4rem;
+}
