@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,7 +26,7 @@ export default function SendIdentity() {
 
   const onSubmit = async () => {
     if (documentFront === undefined || documentBack === undefined) {
-      alert('É necessário enviar os dois lados do documento');
+      toast.error('É necessário enviar os dois lados do documento');
       return;
     }
 

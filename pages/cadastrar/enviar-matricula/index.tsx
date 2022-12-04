@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useRegisterFlow } from 'contexts/registerFlow';
 import Link from 'next/link';
@@ -25,7 +26,7 @@ export default function SendEnrollment() {
 
   const onSubmit = async () => {
     if (enrollmentDocument === undefined) {
-      alert('É necessário enviar o documento da matrícula');
+      toast.error('É necessário enviar o documento da matrícula');
       return;
     }
 

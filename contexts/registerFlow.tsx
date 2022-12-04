@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import api from 'services/api';
 
 interface FirstStepData {
@@ -67,7 +68,7 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      toast.error(error);
       setError(null);
     }
   }, [error]);
