@@ -16,7 +16,7 @@ export default function SendEnrollment() {
 
   const [cpf, setCpf] = useState('');
   const [enrollment, setEnrollment] = useState('');
-  const [enrollmentDocument, setEnrollmentDocument] = useState<File>();
+  const [enrollmentDocument, setEnrollmentDocument] = useState<string>();
 
   useEffect(() => {
     if (!flow.firstStepData) {
@@ -86,9 +86,7 @@ export default function SendEnrollment() {
           placeholder="Realizar upload do arquivo"
           type="file"
           value={enrollmentDocument as unknown as string}
-          onChange={(event) =>
-            setEnrollmentDocument(event.target.value as unknown as File)
-          }
+          onChange={(event) => setEnrollmentDocument(event.target.value)}
         />
       </div>
 

@@ -1,26 +1,13 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
-
-interface FirstStepData {
-  name: string;
-  email: string;
-  password: string;
-  cellphone: string;
-  isUFCGMember: boolean;
-}
-
-type SecondStepData =
-  | {
-      cpf: string;
-      documentFront: File;
-      documentBack: File;
-    }
-  | {
-      cpf: string;
-      enrollment: string;
-      enrollmentDocument: File;
-    };
+import {
+  FirstStepData,
+  rgStepSchema,
+  SecondStepData,
+  studentStepSchema,
+} from 'schemas/registration';
+import { isValid } from 'utils/yup';
 
 type RegisterFlowContextType =
   | {
@@ -45,7 +32,15 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
   const [loading, setLoading] = useState(false);
 
   const confirmRegistration = async (data: SecondStepData) => {
-    if (!firstStepData || !data) {
+    if (!firstStepData) {
+      return false;
+    }
+
+    if ('enrollment' in data) {
+      if (!isValid(studentStepSchema, data)) {
+        return false;
+      }
+    } else if (!isValid(rgStepSchema, data)) {
       return false;
     }
 

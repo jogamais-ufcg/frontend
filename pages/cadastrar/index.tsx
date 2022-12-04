@@ -16,6 +16,8 @@ import {
 import PageContainer from '../../components/PageContainer';
 import { useRegisterFlow } from 'contexts/registerFlow';
 import { useEffect, useState } from 'react';
+import { isValid } from 'utils/yup';
+import { firstStepSchema } from 'schemas/registration';
 
 export default function Register() {
   const router = useRouter();
@@ -38,19 +40,25 @@ export default function Register() {
     }
   }, [flow.firstStepData]);
 
-  const onSubmitFirstStep = (isStudent = false) => {
+  const onSubmitFirstStep = async (isStudent = false) => {
     if (password !== confirmPassword) {
       toast.error('Senhas não conferem');
       return;
     }
 
-    flow.confirmFirstStep({
+    const data = {
       name,
       email,
       password,
       cellphone,
       isUFCGMember,
-    });
+    };
+
+    if (!isValid(firstStepSchema, data)) {
+      return;
+    }
+
+    flow.confirmFirstStep(data);
 
     if (isStudent) {
       router.push('/cadastrar/enviar-matricula');

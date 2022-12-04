@@ -21,7 +21,8 @@
     "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
     "react-input-mask": "^2.0.4",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.0",

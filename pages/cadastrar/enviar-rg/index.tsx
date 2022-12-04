@@ -15,8 +15,8 @@ export default function SendIdentity() {
   const flow = useRegisterFlow();
 
   const [cpf, setCpf] = useState('');
-  const [documentFront, setDocumentFront] = useState<File>();
-  const [documentBack, setDocumentBack] = useState<File>();
+  const [documentFront, setDocumentFront] = useState<string>();
+  const [documentBack, setDocumentBack] = useState<string>();
 
   useEffect(() => {
     if (!flow.firstStepData) {
@@ -75,18 +75,14 @@ export default function SendIdentity() {
           type="file"
           placeholder="Realizar upload do arquivo"
           value={documentFront as unknown as string}
-          onChange={(event) =>
-            setDocumentFront(event.target.value as unknown as File)
-          }
+          onChange={(event) => setDocumentFront(event.target.value)}
         />
         <Input
           label="Verso do Documento"
           type="file"
           placeholder="Realizar upload do arquivo"
           value={documentBack as unknown as string}
-          onChange={(event) =>
-            setDocumentBack(event.target.value as unknown as File)
-          }
+          onChange={(event) => setDocumentBack(event.target.value)}
         />
       </div>
 

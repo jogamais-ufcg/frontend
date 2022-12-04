@@ -1,5 +1,17 @@
-import { CreateUser } from 'schemas/user';
 import { fetchApi } from '../utils';
+
+interface CreateUser {
+  name: string;
+  email: string;
+  password: string;
+  cellphone: string;
+  cpf: string;
+  documentFront?: string;
+  documentBack?: string;
+  isUFCGMember?: boolean;
+  enrollment?: string;
+  enrollmentDocument?: string;
+}
 
 const endpoints = {
   get(id: string) {
