@@ -4,7 +4,7 @@ import axios from 'axios';
 const DEFAULT_ERROR_MESSAGE = 'Erro ao conectar com o servidor!';
 
 const api = axios.create({
-  baseURL: 'https://webhook.site/27a79164-6419-4986-ad0b-a7d012097e37',
+  baseURL: 'http://localhost:3333',
 });
 
 interface FetchOptions {
