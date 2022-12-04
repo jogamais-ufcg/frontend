@@ -1,3 +1,23 @@
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.textArea {
+  padding-top: 1rem;
+}
+
+.adminInputsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.adminInputsContainer > div {
+  padding-top: 1rem;
+}
+
 .buttonContainer {
   display: flex;
   flex-direction: column;
