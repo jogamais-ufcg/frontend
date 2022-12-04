@@ -17,9 +17,9 @@ type RegisterFlowContextType =
       error: string | null;
       loading: boolean;
     })
-  | null;
+  | undefined;
 
-const RegisterFlowContext = createContext<RegisterFlowContextType>(null);
+const RegisterFlowContext = createContext<RegisterFlowContextType>(undefined);
 
 interface RegisterFlowProviderProps {
   children: React.ReactNode;

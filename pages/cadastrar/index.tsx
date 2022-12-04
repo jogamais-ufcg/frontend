@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -14,10 +13,11 @@ import {
   faSignIn,
 } from '@fortawesome/free-solid-svg-icons';
 import PageContainer from '../../components/PageContainer';
+import { useRegisterFlow } from 'contexts/registerFlow';
 
 export default function Register() {
   const router = useRouter();
-  const [isUFCGMember, setIsUFCGMember] = useState(false);
+  const flow = useRegisterFlow();
 
   return (
     <PageContainer headTitle="Cadastrar">
@@ -35,6 +35,8 @@ export default function Register() {
           label="Email"
           placeholder="meumelhor@email.com"
           type="email"
+          value={flow.email}
+          onChange={(e) => flow.setEmail(e.target.value)}
         />
 
         <Input
@@ -42,6 +44,8 @@ export default function Register() {
           label="Nome Completo"
           placeholder="Nome Completo"
           type="text"
+          value={flow.name}
+          onChange={(e) => flow.setName(e.target.value)}
         />
 
         <Input
@@ -50,6 +54,8 @@ export default function Register() {
           mask="(99) 9 9999-9999"
           placeholder="(99) 9 4002-8922"
           type="tel"
+          value={flow.cellphone}
+          onChange={(e) => flow.setCellphone(e.target.value)}
         />
 
         <Input
@@ -57,6 +63,8 @@ export default function Register() {
           label="Senha"
           placeholder="Digite aqui sua senha"
           type="password"
+          value={flow.password}
+          onChange={(e) => flow.setPassword(e.target.value)}
         />
 
         <Input
@@ -64,6 +72,8 @@ export default function Register() {
           label="Confirme sua Senha"
           placeholder="Confirme sua senha"
           type="password"
+          value={flow.confirmPassword}
+          onChange={(e) => flow.setConfirmPassword(e.target.value)}
         />
       </div>
 
@@ -71,13 +81,13 @@ export default function Register() {
         <input
           type="checkbox"
           id="checkbox-1"
-          onClick={() => setIsUFCGMember(!isUFCGMember)}
+          onClick={() => flow.setIsUFCGMember(!flow.isUFCGMember)}
         ></input>
         <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>
 
       <div className={styles.button}>
-        {isUFCGMember ? (
+        {flow.isUFCGMember ? (
           <>
             <Button
               onClick={() => router.push('/cadastrar/enviar-matricula')}
