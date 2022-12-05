@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from './styles.module.css';
@@ -76,6 +77,7 @@ function Layout(props: LayoutProps) {
         />
       </Head>
 
+      <ToastContainer theme="dark" />
       <div className={styles.container}>{props.children}</div>
 
       <footer className={styles.footer}>

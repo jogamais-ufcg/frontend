@@ -1,37 +1,97 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useMemo } from 'react';
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
+
+import { useMemo, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { useFileInput, InputProps } from './hooks';
 import styles from './styles.module.css';
 
+type OnChangeEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
+
+interface InputComponentProps {
+  onChange?: (event: OnChangeEvent) => void;
+  value?: string;
+  type: 'text' | 'email' | 'password' | 'number' | 'file' | 'tel' | 'textarea';
+  placeholder: string;
+  fileInputId?: string;
+}
+
+type InputProps = InputComponentProps & {
+  label: string;
+  mask?: string | (string | RegExp)[];
+  icon?: FontAwesomeIconProps['icon'];
+};
+
+function InputComponent({
+  type,
+  onChange,
+  value,
+  placeholder,
+  fileInputId,
+}: InputComponentProps) {
+  if (type === 'textarea') {
+    return (
+      <textarea placeholder={placeholder} value={value} onChange={onChange} />
+    );
+  }
+
+  return (
+    <input
+      id={fileInputId}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+
 function Input(props: InputProps) {
-  const { type, label, placeholder, value, mask } = props;
+  const { type, label, placeholder, value, mask, icon, onChange } = props;
   const isFileInput = useMemo(() => type === 'file', [type]);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
-  const { renderedIcon, fileInputId, handleInputChange, fileInputLabel } =
-    useFileInput(props);
-
-  const InputComponent = () => {
-    if (type === 'textarea') {
-      return (
-        <textarea
-          placeholder={placeholder}
-          value={value}
-          onChange={handleInputChange}
-        />
-      );
+  const renderedIcon = useMemo(() => {
+    if (type === 'file') {
+      return faUpload;
     }
 
-    return (
-      <input
-        id={fileInputId}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleInputChange}
-      />
-    );
+    return icon;
+  }, [icon, type]);
+
+  const handleInputChange = (event: OnChangeEvent) => {
+    if (isFileInput && 'files' in event.target) {
+      const file = event.target.files?.[0];
+
+      if (file) {
+        setSelectedFile(file.name);
+      } else {
+        setSelectedFile(null);
+      }
+    }
+
+    onChange?.(event);
   };
+
+  const fileInputId = useMemo(() => {
+    if (isFileInput) {
+      return label.replaceAll(' ', '-').toLowerCase();
+    }
+
+    return undefined;
+  }, [isFileInput, label]);
+
+  const fileInputLabel = useMemo(() => {
+    if (selectedFile) {
+      return 'Documento selecionado.';
+    }
+
+    return placeholder;
+  }, [selectedFile, placeholder]);
 
   return (
     <div
@@ -64,7 +124,13 @@ function Input(props: InputProps) {
             onChange={handleInputChange}
           />
         ) : (
-          <InputComponent />
+          <InputComponent
+            fileInputId={fileInputId}
+            value={value}
+            type={type}
+            placeholder={placeholder}
+            onChange={handleInputChange}
+          />
         )}
       </div>
     </div>

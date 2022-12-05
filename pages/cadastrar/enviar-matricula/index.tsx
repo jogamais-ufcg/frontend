@@ -1,14 +1,47 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { useRegisterFlow } from 'contexts/registerFlow';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import BackHeader from '../../../components/BackHeader';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import PageContainer from '../../../components/PageContainer';
+import BackHeader from 'components/BackHeader';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import PageContainer from 'components/PageContainer';
 import styles from './styles.module.css';
 
 export default function SendEnrollment() {
   const router = useRouter();
+  const flow = useRegisterFlow();
+
+  const [cpf, setCpf] = useState('');
+  const [enrollment, setEnrollment] = useState('');
+  const [enrollmentDocument, setEnrollmentDocument] = useState<string>();
+
+  useEffect(() => {
+    if (!flow.firstStepData) {
+      router.replace('/cadastrar');
+    }
+  }, [router, flow]);
+
+  const onSubmit = async () => {
+    if (enrollmentDocument === undefined) {
+      toast.error('É necessário enviar o documento da matrícula');
+      return;
+    }
+
+    const success = await flow.confirmRegistration({
+      cpf,
+      enrollment,
+      enrollmentDocument,
+    });
+
+    if (!success) {
+      return;
+    }
+
+    router.push('/cadastrar/sucesso');
+  };
 
   return (
     <PageContainer headTitle="Enviar Matrícula">
@@ -34,6 +67,8 @@ export default function SendEnrollment() {
           label="Número da matrícula"
           type="number"
           placeholder="Somente números"
+          value={enrollment}
+          onChange={(event) => setEnrollment(event.target.value)}
         />
 
         <Input
@@ -42,19 +77,23 @@ export default function SendEnrollment() {
           type="tel"
           placeholder="Somente números"
           mask="999.999.999-99"
+          value={cpf}
+          onChange={(event) => setCpf(event.target.value)}
         />
 
         <Input
           label="RDM ou outro documento similar"
           placeholder="Realizar upload do arquivo"
           type="file"
+          value={enrollmentDocument as unknown as string}
+          onChange={(event) => setEnrollmentDocument(event.target.value)}
         />
       </div>
 
       <div className={styles.button}>
         <Button
           icon={faCheck}
-          onClick={() => router.push('/cadastrar/sucesso')}
+          onClick={onSubmit}
           type="button"
           label="Confirmar"
           color="primary"
