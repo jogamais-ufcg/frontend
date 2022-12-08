@@ -21,8 +21,8 @@ export default function ScheduleSuccess() {
       <div className={styles.mainInformation}>
         <h1>Seu agendamento foi realizado com sucesso. </h1>
         <p>
-          O seu agendamento foi concluído. Continue usando o Joga+ UFCG para
-          suas próximas partidas. Aproveite!
+          Fique de olho no seu email, qualquer notificação sobre o status do
+          agendamento pode ser enviada por lá!
         </p>
       </div>
 
