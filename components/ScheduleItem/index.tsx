@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faTimes } from '@fortawesome/free-solid-svg-icons';
+import styles from './styles.module.css';
 
 interface ScheduleItemProps {
   title: string;
@@ -21,19 +22,27 @@ function ScheduleItem({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
-        <button onClick={() => setIsExpanded(!isExpanded)}>
-          <h1>{title}</h1>
+        <button
+          className={`${styles.infos} ${!isExpanded && styles.infosRounded}`}
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <h2>{title}</h2>
 
           <div>
             <FontAwesomeIcon icon={faClock} />
 
-            {subtitle}
+            <p>{subtitle}</p>
           </div>
         </button>
 
-        <button onClick={() => onDelete()}>
+        <button
+          className={`${styles.deleteBtn} ${
+            !isExpanded && styles.deleteBtnRounded
+          }`}
+          onClick={() => onDelete()}
+        >
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>

@@ -12,7 +12,7 @@ const mockedSchedules = [
     schedule: '9h00 às 9h30',
   },
   {
-    name: 'Gabriel Gomes Passos de Lacerda',
+    name: 'Gabriel de Caldas Lacerda',
     schedule: '11h00 às 11h30',
   },
   {
