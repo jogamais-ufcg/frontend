@@ -1,38 +1,39 @@
 export const mockedCourts = [
   {
     id: 1,
-    name: 'Quadra de Tênis',
+    name: 'Tênis',
+    // Generated text for description
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Essa quadra é muito legal, tem uma vista muito bonita e é muito boa para jogar tênis.',
   },
   {
     id: 2,
-    name: 'Quadra de Futebol',
+    name: 'Futebol',
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Essa quadra talvez seja larga, tem uma vista muito bonita e é muito boa para jogar futebol.',
   },
   {
     id: 3,
-    name: 'Quadra de Vôlei',
+    name: 'Vôlei',
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Cabem por volta de 12 pessoas, tem uma vista muito bonita e é muito boa para jogar vôlei.',
   },
   {
     id: 4,
-    name: 'Quadra de Basquete',
+    name: 'Basquete',
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Estou tentando ser criativo e mudando por aqui, tem uma vista muito bonita e é muito boa para jogar basquete.',
   },
   {
     id: 5,
-    name: 'Quadra de Futebol Society',
+    name: 'Futebol Society',
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Essa quadra é muito legal, tem uma vista muito bonita e é muito boa para jogar futebol society.',
   },
   {
     id: 6,
-    name: 'Quadra de Handebol',
+    name: 'Handebol',
     description:
-      'Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet Lorem Impsum Dolor Sit Amet',
+      'Você deveria ter me ajudado Copilot, estou decepcionado e é muito boa para jogar handebol.',
   },
 ];

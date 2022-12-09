@@ -11,6 +11,8 @@ import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
 import { useState } from 'react';
 import Input from 'components/Input';
+import { mockedCourts } from './data';
+import CourtItem from 'components/CourtItem';
 
 interface OptionsMenuProps {
   isLogged: boolean;
@@ -70,7 +72,17 @@ export default function Courts() {
 
         <Input type="text" placeholder="Pesquise por nome..." icon={faSearch} />
 
-        <div className={styles.courtsContainer}></div>
+        <div className={styles.courtsContainer}>
+          {mockedCourts.map((court, index) => (
+            <CourtItem
+              key={court.id}
+              index={index}
+              title={court.name}
+              description={court.description}
+              href="/quadras"
+            />
+          ))}
+        </div>
       </PageContainer>
     </div>
   );
