@@ -11,7 +11,7 @@ import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
 import { useState } from 'react';
 import Input from 'components/Input';
-import { mockedCourts } from './data';
+import { mockedCourts } from 'services/data';
 import CourtItem from 'components/CourtItem';
 
 interface OptionsMenuProps {
