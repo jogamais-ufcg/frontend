@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  display: flex;
+  top: 1rem;
+  left: 1rem;
+  position: absolute;
+}
+
+.container button {
+  background-color: var(--gray);
+  width: 45px;
+  height: 45px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.container svg {
+  width: 20px;
+}
