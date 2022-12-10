@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import logo from '../../../public/brand/logo.png';
 import hand from '../../../public/illustrations/hand.svg';
 import styles from './styles.module.css';
@@ -7,7 +7,7 @@ import Button from '../../../components/Button';
 import PageContainer from '../../../components/PageContainer';
 
 export default function SignInConfirmation() {
-  // const router = useRouter();
+  const router = useRouter();
 
   return (
     <PageContainer headTitle="Cadastro confirmado">
@@ -30,7 +30,8 @@ export default function SignInConfirmation() {
       <div className={styles.buttonsContainer}>
         <Button
           type="button"
-          label="👀 Voltar à listagem de usuários"
+          onClick={() => router.push('/login')}
+          label="⬅ Voltar à listagem de usuários"
           color="secondary"
         />
       </div>
