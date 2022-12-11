@@ -1,23 +1,29 @@
 import Image from 'next/image';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import logo from 'public/brand/logo.png';
-import hand from 'public/illustrations/hand.svg';
+import logo from '../../public/brand/logo.png';
+import hand from '../../public/illustrations/hand.svg';
 import styles from './styles.module.css';
-import Button from 'components/Button';
-import PageContainer from 'components/PageContainer';
+import Button from '../../components/Button';
 
-export default function SignInConfirmation() {
+export default function ScheduleSuccess() {
   const router = useRouter();
 
   return (
-    <PageContainer headTitle="Cadastro confirmado">
+    <div className={styles.container}>
+      <Head>
+        <title>Agendamento | Joga+ UFCG</title>
+      </Head>
       <div className={styles.logoContainer}>
         <Image className={styles.logo} src={logo} alt="Joga Mais UFCG" />
       </div>
       <div className={styles.mainInformation}>
-        <h1>Cadastro realizado com sucesso!</h1>
-        <p>A sua resposta foi enviada por email para o usuário solicitante.</p>
+        <h1>Seu agendamento foi realizado com sucesso. </h1>
+        <p>
+          Fique de olho no seu email, qualquer notificação sobre o status do
+          agendamento pode ser enviada por lá!
+        </p>
       </div>
 
       <div className={styles.handContainer}>
@@ -31,12 +37,12 @@ export default function SignInConfirmation() {
       <div className={styles.buttonsContainer}>
         <Button
           icon={faArrowLeft}
-          type="button"
           onClick={() => router.push('/login')}
-          label="Voltar à listagem de usuários"
+          type="button"
+          label="👀 Voltar para as quadras"
           color="secondary"
         />
       </div>
-    </PageContainer>
+    </div>
   );
 }

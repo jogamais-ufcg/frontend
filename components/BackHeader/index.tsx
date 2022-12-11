@@ -5,9 +5,10 @@ import styles from './styles.module.css';
 
 interface BackHeaderProps {
   title: string;
+  subtitle?: string;
 }
 
-function BackHeader({ title }: BackHeaderProps) {
+function BackHeader({ title, subtitle }: BackHeaderProps) {
   const router = useRouter();
 
   return (
@@ -16,7 +17,10 @@ function BackHeader({ title }: BackHeaderProps) {
         <FontAwesomeIcon icon={faArrowLeft} />
       </button>
 
-      <h1>{title}</h1>
+      <div>
+        <h1>{title}</h1>
+        {subtitle && <h3>{subtitle}</h3>}
+      </div>
     </div>
   );
 }

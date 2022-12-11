@@ -1,8 +1,13 @@
 .container {
   width: 100%;
   display: flex;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   align-items: center;
+}
+
+.container > div {
+  display: flex;
+  flex-direction: column;
 }
 
 .container button {
@@ -22,4 +27,9 @@
 
 .container h1 {
   font-size: 1.5rem;
+}
+
+.container h3 {
+  color: var(--text-gray);
+  font-weight: normal;
 }
