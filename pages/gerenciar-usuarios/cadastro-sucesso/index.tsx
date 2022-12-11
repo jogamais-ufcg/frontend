@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import logo from '../../../public/brand/logo.png';
-import hand from '../../../public/illustrations/hand.svg';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import logo from 'public/brand/logo.png';
+import hand from 'public/illustrations/hand.svg';
 import styles from './styles.module.css';
-import Button from '../../../components/Button';
-import PageContainer from '../../../components/PageContainer';
+import Button from 'components/Button';
+import PageContainer from 'components/PageContainer';
 
 export default function SignInConfirmation() {
   const router = useRouter();
@@ -29,9 +30,10 @@ export default function SignInConfirmation() {
 
       <div className={styles.buttonsContainer}>
         <Button
+          icon={faArrowLeft}
           type="button"
           onClick={() => router.push('/login')}
-          label="⬅ Voltar à listagem de usuários"
+          label="Voltar à listagem de usuários"
           color="secondary"
         />
       </div>
