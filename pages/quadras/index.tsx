@@ -48,19 +48,21 @@ function OptionsMenu({ isLogged, isAdmin }: OptionsMenuProps) {
 }
 
 export default function Courts() {
-  const [modal, setModal] = useState(false);
   const [isAdmin] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
       <header className={styles.header}>
         <Image src={logo} alt="Joga Mais UFCG" width={100} />
 
-        <button onClick={() => setModal(true)}>
+        <button onClick={handleOpen}>
           <OptionsMenu isAdmin={isAdmin} isLogged={true} />
         </button>
 
-        <Modal open={modal}>
+        <Modal open={open} onOpen={handleOpen} onClose={handleClose}>
           <p>olaaaaa</p>
         </Modal>
       </header>
