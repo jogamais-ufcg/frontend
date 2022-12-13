@@ -62,9 +62,7 @@ export default function Courts() {
           <OptionsMenu isAdmin={isAdmin} isLogged={true} />
         </button>
 
-        <Modal open={open} onOpen={handleOpen} onClose={handleClose}>
-          <p>olaaaaa</p>
-        </Modal>
+        <Modal open={open} onOpen={handleOpen} onClose={handleClose} />
       </header>
 
       <PageContainer headTitle="Quadras disponíveis">

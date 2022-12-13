@@ -1,0 +1,17 @@
+.modalBox {
+  background-color: var(--blue-dark);
+}
+
+.list {
+  margin: 1rem 3rem;
+}
+
+.listItem {
+  margin: 2rem 0;
+  background-color: var(--gray);
+  border-radius: 15px;
+}
+
+.icon {
+  color: var(--white);
+}
