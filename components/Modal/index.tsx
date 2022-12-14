@@ -1,12 +1,13 @@
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import styles from './styles.module.css';
 import { ListItem, ListItemButton, ListItemIcon } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface ModalProps {
   open: boolean;
@@ -21,37 +22,47 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
       open={open}
       onOpen={onOpen}
       onClose={onClose}
+      className={styles.modal}
     >
-      <div className={styles.modalBox}>
-        <Box>
-          <List className={styles.list}>
-            <ListItem key="edit-profile" className={styles.listItem}>
-              <ListItemButton>
-                <ListItemIcon className={styles.icon}>
-                  <EditIcon />
-                </ListItemIcon>
-                <ListItemText primary="Editar perfil" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem key="my-appointments" className={styles.listItem}>
-              <ListItemButton>
-                <ListItemIcon className={styles.icon}>
-                  <HistoryIcon />
-                </ListItemIcon>
-                <ListItemText primary="Meus agendamentos" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem key="logout" className={styles.listItem}>
-              <ListItemButton>
-                <ListItemIcon className={styles.icon}>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Sair da conta" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Box>
-      </div>
+      <Box className={styles.modalBox}>
+        <List
+          className={styles.list}
+          subheader={
+            <div className={styles.subheader}>
+              <AccountBoxIcon />
+              <h2>Meu perfil</h2>
+              <div className={styles.close} onClick={onClose}>
+                <CloseIcon />
+              </div>
+            </div>
+          }
+        >
+          <ListItem key="edit-profile" className={styles.listItem}>
+            <ListItemButton>
+              <ListItemIcon>
+                <EditIcon fontSize="large" />
+              </ListItemIcon>
+              <p>Editar perfil</p>
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="my-appointments" className={styles.listItem}>
+            <ListItemButton>
+              <ListItemIcon>
+                <HistoryIcon fontSize="large" />
+              </ListItemIcon>
+              <p>Meus agendamentos</p>
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="logout" className={styles.listItem}>
+            <ListItemButton>
+              <ListItemIcon>
+                <LogoutIcon fontSize="large" />
+              </ListItemIcon>
+              <p>Sair da conta</p>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
     </SwipeableDrawer>
   );
 }
