@@ -8,6 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
+import { useState, useEffect } from 'react';
 
 interface ModalProps {
   open: boolean;
@@ -16,13 +17,25 @@ interface ModalProps {
 }
 
 function Modal({ open, onOpen, onClose }: ModalProps) {
+  const [width, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
+  const updateDimensions = () => {
+    const width = window.innerWidth;
+    setWindowWidth(width);
+  };
+
   return (
     <SwipeableDrawer
-      anchor="bottom"
+      anchor={width < 1280 ? 'bottom' : 'left'}
       open={open}
       onOpen={onOpen}
       onClose={onClose}
-      className={styles.modal}
     >
       <Box className={styles.modalBox}>
         <List

@@ -1,5 +1,6 @@
 .modalBox {
   background-color: var(--blue-dark);
+  height: 100%;
 }
 
 .list {
