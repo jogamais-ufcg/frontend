@@ -6,11 +6,8 @@ import {
   faPen,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
 import Button from '../../components/Button';
-import PageContainer from '../../components/PageContainer';
 import styles from './styles.module.css';
-import quadra from '../../public/quadra.png';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FreeBackHeader from 'components/FreeBackHeader';
@@ -22,10 +19,9 @@ export default function ResetPassword() {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <FreeBackHeader></FreeBackHeader>
-        <Image className={styles.img} src={quadra} alt="Imagem da Quadra" />
       </div>
 
-      <PageContainer headTitle="Ver Quadra">
+      <div className={styles.pageContainer}>
         <div className={styles.mainInformation}>
           <h2>Quadra de Tenis</h2>
 
@@ -92,7 +88,7 @@ export default function ResetPassword() {
             color="danger"
           />
         </div>
-      </PageContainer>
+      </div>
     </div>
   );
 }
