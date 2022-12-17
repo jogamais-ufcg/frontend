@@ -11,9 +11,11 @@ import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FreeBackHeader from 'components/FreeBackHeader';
+import { useState } from 'react';
 
-export default function ResetPassword() {
+export default function VerQuadra() {
   const router = useRouter();
+  const [isUser] = useState(true);
 
   return (
     <div className={styles.container}>
@@ -47,47 +49,72 @@ export default function ResetPassword() {
             <FontAwesomeIcon icon={faInfoCircle} />
             <span>1h30 de duração do agendamento</span>
           </div>
+
+          {isUser && (
+            <>
+              <div className={styles.info}>
+                <FontAwesomeIcon icon={faInfoCircle} />
+                <span>Possui agendamento recorrente</span>
+              </div>
+            </>
+          )}
         </div>
 
-        <div className={styles.buttonContainer}>
-          <Button
-            onClick={() => router.push('/redefinir-senha/sucesso')}
-            icon={faClock}
-            type="button"
-            label="Escolher data e horário"
-            color="primary"
-          />
-        </div>
+        {isUser ? (
+          <>
+            <div className={styles.buttonContainer}>
+              <Button
+                onClick={() => router.push('/redefinir-senha/sucesso')}
+                icon={faClock}
+                type="button"
+                label="Beleza, quero agendar!"
+                color="primary"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.buttonContainer}>
+              <Button
+                onClick={() => router.push('/redefinir-senha/sucesso')}
+                icon={faClock}
+                type="button"
+                label="Escolher data e horário"
+                color="primary"
+              />
+            </div>
 
-        <div className={styles.buttonContainer}>
-          <Button
-            onClick={() => router.push('/redefinir-senha/sucesso')}
-            icon={faPen}
-            type="button"
-            label="Editar informações"
-            color="secondary"
-          />
-        </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                onClick={() => router.push('/redefinir-senha/sucesso')}
+                icon={faPen}
+                type="button"
+                label="Editar informações"
+                color="secondary"
+              />
+            </div>
 
-        <div className={styles.buttonContainer}>
-          <Button
-            onClick={() => router.push('/redefinir-senha/sucesso')}
-            icon={faCancel}
-            type="button"
-            label="Gerenciar desativações"
-            color="secondary"
-          />
-        </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                onClick={() => router.push('/redefinir-senha/sucesso')}
+                icon={faCancel}
+                type="button"
+                label="Gerenciar desativações"
+                color="secondary"
+              />
+            </div>
 
-        <div className={styles.buttonContainer}>
-          <Button
-            onClick={() => router.push('/redefinir-senha/sucesso')}
-            icon={faTrash}
-            type="button"
-            label="Excluir quadra"
-            color="danger"
-          />
-        </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                onClick={() => router.push('/redefinir-senha/sucesso')}
+                icon={faTrash}
+                type="button"
+                label="Excluir quadra"
+                color="danger"
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
