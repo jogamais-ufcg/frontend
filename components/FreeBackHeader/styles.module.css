@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  width: 20%;
   display: flex;
   top: 1rem;
   left: 1rem;
@@ -8,9 +8,9 @@
 
 .container button {
   background-color: var(--gray);
-  width: 45px;
-  height: 45px;
-  border-radius: 100px;
+  width: 2.813rem;
+  height: 2.813rem;
+  border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,5 +18,5 @@
 }
 
 .container svg {
-  width: 20px;
+  width: 1.4rem;
 }
