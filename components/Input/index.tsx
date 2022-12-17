@@ -21,7 +21,7 @@ interface InputComponentProps {
 }
 
 type InputProps = InputComponentProps & {
-  label: string;
+  label?: string;
   mask?: string | (string | RegExp)[];
   icon?: FontAwesomeIconProps['icon'];
 };
@@ -79,11 +79,12 @@ function Input(props: InputProps) {
 
   const fileInputId = useMemo(() => {
     if (isFileInput) {
-      return label.replaceAll(' ', '-').toLowerCase();
+      const labelValue = label || placeholder;
+      return labelValue.replaceAll(' ', '-').toLowerCase();
     }
 
     return undefined;
-  }, [isFileInput, label]);
+  }, [isFileInput, label, placeholder]);
 
   const fileInputLabel = useMemo(() => {
     if (selectedFile) {
@@ -97,7 +98,7 @@ function Input(props: InputProps) {
     <div
       className={`${styles.container} ${isFileInput ? styles.isFileInput : ''}`}
     >
-      <label>{label}</label>
+      {label && <label>{label}</label>}
 
       <div
         className={`${

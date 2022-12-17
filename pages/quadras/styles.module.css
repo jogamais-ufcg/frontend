@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+.header > button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.7rem;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.header > button > svg {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.header > button > h3 {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.title > h1 {
+  font-size: 1.3rem;
+}
+
+.title > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.title > button > svg {
+  width: 20px;
+}
+
+.courtsContainer {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: 500px) {
+  .header {
+    padding-right: 2rem;
+  }
+
+  .header > button {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}

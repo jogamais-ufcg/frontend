@@ -29,6 +29,7 @@ export default function Home() {
           type="button"
           label="👀 Dar uma olhadinha nas quadras"
           color="secondary"
+          onClick={() => router.push('/quadras')}
         />
         <Button
           icon={faSignIn}

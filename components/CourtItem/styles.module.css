@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  height: 85px;
+  background-color: var(--gray);
+  margin: 20px 0;
+  border-radius: 15px;
+}
+
+.container > div:nth-child(1) {
+  width: 25px;
+  height: 100%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.sideBarBlue {
+  background-color: var(--blue-lighter);
+}
+
+.sideBarBlueAlternative {
+  background-color: var(--blue-alternative);
+}
+
+.infos {
+  flex: 1;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infos > h3 {
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+}
+
+.infos > p {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
