@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 export default function VerQuadra() {
   const router = useRouter();
-  const [isUser] = useState(true);
+  const [isUser] = useState(false);
 
   return (
     <div className={styles.container}>

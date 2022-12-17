@@ -32,6 +32,7 @@
 }
 
 .infoContainer {
+  width: 100%;
   justify-content: left;
   padding-bottom: 1rem;
 }
