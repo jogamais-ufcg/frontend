@@ -12,6 +12,7 @@ export const firstStepSchema = yup.object({
     .min(8, 'A senha precisa ter no mínimo 8 caracteres'),
   cellphone: yup.string().required('Celular é obrigatório'),
   isUFCGMember: yup.boolean().default(false),
+  isStudent: yup.boolean().default(false),
 });
 
 export type FirstStepData = yup.InferType<typeof firstStepSchema>;
@@ -27,19 +28,14 @@ export const rgStepSchema = yup.object({
 export const studentStepSchema = yup.object({
   cpf: yup.string().required('CPF é obrigatório'),
   enrollment: yup.string().required('Matrícula é obrigatória'),
-  enrollmentDocument: yup
+  documentFront: yup
     .string()
     .required('Foto do comprovante de matrícula é obrigatória'),
 });
 
-export type SecondStepData =
-  | {
-      cpf: string;
-      documentFront: string;
-      documentBack: string;
-    }
-  | {
-      cpf: string;
-      enrollment: string;
-      enrollmentDocument: string;
-    };
+export interface SecondStepData {
+  cpf: string;
+  enrollment?: string;
+  documentFront: File;
+  documentBack?: File;
+}
