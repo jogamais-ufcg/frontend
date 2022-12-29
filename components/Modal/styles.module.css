@@ -1,0 +1,43 @@
+.modalBox {
+  background-color: var(--blue-dark);
+  height: 100%;
+}
+
+.list {
+  margin: 1rem 2.5rem;
+}
+
+.listItem {
+  margin: 2rem 0;
+  background-color: var(--gray);
+  border-radius: 15px;
+}
+
+.listItem p {
+  font-size: 1.1rem;
+}
+
+.listItem svg {
+  color: var(--white);
+}
+
+.subheader svg {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 3rem;
+  margin-right: 0.5rem;
+}
+
+.subheader h2 {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.6rem;
+}
+
+.close {
+  float: right;
+}
+
+.close:hover {
+  cursor: pointer;
+}

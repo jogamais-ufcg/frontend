@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Input from 'components/Input';
 import { mockedCourts } from 'services/data';
 import CourtItem from 'components/CourtItem';
+import Modal from '../../components/Modal';
 
 interface OptionsMenuProps {
   isLogged: boolean;
@@ -48,13 +49,16 @@ function OptionsMenu({ isLogged, isAdmin }: OptionsMenuProps) {
 
 export default function Courts() {
   const [isAdmin] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
       <header className={styles.header}>
         <Image src={logo} alt="Joga Mais UFCG" width={100} />
 
-        <button>
+        <button onClick={handleOpen}>
           <OptionsMenu isAdmin={isAdmin} isLogged={true} />
         </button>
       </header>
@@ -83,6 +87,8 @@ export default function Courts() {
             />
           ))}
         </div>
+
+        <Modal open={open} onOpen={handleOpen} onClose={handleClose} />
       </PageContainer>
     </div>
   );

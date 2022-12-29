@@ -30,7 +30,7 @@ Cole o seguinte conteúdo:
   "source.fixAll.eslint": true
 },
 "editor.formatOnSave": true,
-"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+"editor.defaultFormatter": "esbenp.prettier-vscode",
 ```
 
 Ao salvar os arquivos, eles devem ser formatados automaticamente.
