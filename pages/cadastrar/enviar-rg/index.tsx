@@ -96,6 +96,7 @@ export default function SendIdentity() {
           type="button"
           label="Confirmar"
           color="primary"
+          disabled={flow.loading}
         />
       </div>
 
