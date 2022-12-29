@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
 import styles from './styles.module.css';
+import { keepOnlyDigits } from 'utils/strings';
 
 export default function SendEnrollment() {
   const router = useRouter();
@@ -16,7 +17,9 @@ export default function SendEnrollment() {
 
   const [cpf, setCpf] = useState('');
   const [enrollment, setEnrollment] = useState('');
-  const [enrollmentDocument, setEnrollmentDocument] = useState<string>();
+  const [enrollmentDocument, setEnrollmentDocument] = useState<File | null>(
+    null
+  );
 
   useEffect(() => {
     if (!flow.firstStepData) {
@@ -25,22 +28,22 @@ export default function SendEnrollment() {
   }, [router, flow]);
 
   const onSubmit = async () => {
-    if (enrollmentDocument === undefined) {
+    if (enrollmentDocument === null) {
       toast.error('É necessário enviar o documento da matrícula');
       return;
     }
 
     const success = await flow.confirmRegistration({
-      cpf,
+      cpf: keepOnlyDigits(cpf),
       enrollment,
-      enrollmentDocument,
+      documentFront: enrollmentDocument,
     });
 
     if (!success) {
       return;
     }
 
-    router.push('/cadastrar/sucesso');
+    router.push('/cadastrar/pendente');
   };
 
   return (
@@ -85,8 +88,9 @@ export default function SendEnrollment() {
           label="RDM ou outro documento similar"
           placeholder="Realizar upload do arquivo"
           type="file"
-          value={enrollmentDocument as unknown as string}
-          onChange={(event) => setEnrollmentDocument(event.target.value)}
+          onChange={(event) =>
+            event.target.files && setEnrollmentDocument(event.target.files[0])
+          }
         />
       </div>
 
@@ -97,6 +101,7 @@ export default function SendEnrollment() {
           type="button"
           label="Confirmar"
           color="primary"
+          disabled={flow.loading}
         />
       </div>
 

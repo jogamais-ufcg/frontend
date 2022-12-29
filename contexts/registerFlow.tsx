@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import {
@@ -14,7 +14,6 @@ type RegisterFlowContextType =
       firstStepData?: FirstStepData;
       confirmFirstStep: (data: FirstStepData) => void;
       confirmRegistration: (data: SecondStepData) => Promise<boolean>;
-      error: string | null;
       loading: boolean;
     }
   | undefined;
@@ -28,7 +27,6 @@ interface RegisterFlowProviderProps {
 export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
   const [firstStepData, setFirstStepData] = useState<FirstStepData>();
 
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const confirmRegistration = async (data: SecondStepData) => {
@@ -44,7 +42,6 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
       return false;
     }
 
-    setError(null);
     setLoading(true);
     const { error: errorMessage } = await api.user.create({
       ...firstStepData,
@@ -53,7 +50,7 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
     setLoading(false);
 
     if (errorMessage) {
-      setError(errorMessage);
+      toast.error(errorMessage);
       return false;
     }
 
@@ -61,20 +58,12 @@ export function RegisterFlowProvider({ children }: RegisterFlowProviderProps) {
     return true;
   };
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      setError(null);
-    }
-  }, [error]);
-
   return (
     <RegisterFlowContext.Provider
       value={{
         firstStepData,
         confirmFirstStep: setFirstStepData,
         confirmRegistration,
-        error,
         loading,
       }}
     >

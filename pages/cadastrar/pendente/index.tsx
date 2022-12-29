@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import logo from '../../../public/brand/logo.png';
 import hand from '../../../public/illustrations/hand.svg';
 import styles from './styles.module.css';
@@ -7,7 +7,7 @@ import Button from '../../../components/Button';
 import PageContainer from '../../../components/PageContainer';
 
 export default function SignInPendent() {
-  // const router = useRouter();
+  const router = useRouter();
 
   return (
     <PageContainer headTitle="Cadastro pendente">
@@ -35,6 +35,7 @@ export default function SignInPendent() {
           type="button"
           label="👀 Dar uma olhadinha nas quadras"
           color="secondary"
+          onClick={() => router.push('/quadras')}
         />
       </div>
     </PageContainer>

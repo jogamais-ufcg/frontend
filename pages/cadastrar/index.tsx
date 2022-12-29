@@ -18,6 +18,7 @@ import { useRegisterFlow } from 'contexts/registerFlow';
 import { useEffect, useState } from 'react';
 import { isValid } from 'utils/yup';
 import { firstStepSchema } from 'schemas/registration';
+import { keepOnlyDigits } from 'utils/strings';
 
 export default function Register() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function Register() {
       name,
       email,
       password,
-      cellphone,
+      cellphone: keepOnlyDigits(cellphone),
       isUFCGMember,
     };
 
@@ -58,7 +59,10 @@ export default function Register() {
       return;
     }
 
-    flow.confirmFirstStep(data);
+    flow.confirmFirstStep({
+      ...data,
+      isStudent,
+    });
 
     if (isStudent) {
       router.push('/cadastrar/enviar-matricula');
@@ -130,7 +134,7 @@ export default function Register() {
           type="checkbox"
           id="checkbox-1"
           checked={isUFCGMember}
-          onClick={() => setIsUFCGMember(!isUFCGMember)}
+          onChange={() => setIsUFCGMember(!isUFCGMember)}
         ></input>
         <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>

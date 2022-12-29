@@ -11,6 +11,7 @@ interface ButtonProps {
   color?: 'primary' | 'secondary' | 'danger';
   type?: 'button' | 'submit' | 'reset';
   icon?: FontAwesomeIconProps['icon'];
+  disabled?: boolean;
 }
 
 const buttonColors = {
@@ -25,12 +26,14 @@ function Button({
   onClick,
   color = 'primary',
   icon,
+  disabled,
 }: ButtonProps) {
   return (
     <button
       className={`${styles.container} ${buttonColors[color]}`}
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
       {icon && <FontAwesomeIcon icon={icon} />}
       {label}

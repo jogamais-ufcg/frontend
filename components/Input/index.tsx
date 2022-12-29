@@ -8,9 +8,8 @@ import { useMemo, useState } from 'react';
 import InputMask from 'react-input-mask';
 import styles from './styles.module.css';
 
-type OnChangeEvent =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
+type OnChangeEvent = React.ChangeEvent<HTMLInputElement> &
+  React.ChangeEvent<HTMLTextAreaElement>;
 
 interface InputComponentProps {
   onChange?: (event: OnChangeEvent) => void;

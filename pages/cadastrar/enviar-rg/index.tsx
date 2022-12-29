@@ -9,14 +9,15 @@ import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
 import styles from './styles.module.css';
 import { useRegisterFlow } from 'contexts/registerFlow';
+import { keepOnlyDigits } from 'utils/strings';
 
 export default function SendIdentity() {
   const router = useRouter();
   const flow = useRegisterFlow();
 
   const [cpf, setCpf] = useState('');
-  const [documentFront, setDocumentFront] = useState<string>();
-  const [documentBack, setDocumentBack] = useState<string>();
+  const [documentFront, setDocumentFront] = useState<File | null>(null);
+  const [documentBack, setDocumentBack] = useState<File | null>(null);
 
   useEffect(() => {
     if (!flow.firstStepData) {
@@ -25,22 +26,22 @@ export default function SendIdentity() {
   }, [router, flow]);
 
   const onSubmit = async () => {
-    if (documentFront === undefined || documentBack === undefined) {
+    if (documentFront === null || documentBack === null) {
       toast.error('É necessário enviar os dois lados do documento');
       return;
     }
 
     const success = await flow.confirmRegistration({
-      cpf,
-      documentFront,
+      cpf: keepOnlyDigits(cpf),
       documentBack,
+      documentFront,
     });
 
     if (!success) {
       return;
     }
 
-    router.push('/cadastrar/sucesso');
+    router.push('/cadastrar/pendente');
   };
 
   return (
@@ -74,15 +75,17 @@ export default function SendIdentity() {
           label="Frente do documento"
           type="file"
           placeholder="Realizar upload do arquivo"
-          value={documentFront as unknown as string}
-          onChange={(event) => setDocumentFront(event.target.value)}
+          onChange={(event) =>
+            event.target.files && setDocumentFront(event.target.files[0])
+          }
         />
         <Input
           label="Verso do Documento"
           type="file"
           placeholder="Realizar upload do arquivo"
-          value={documentBack as unknown as string}
-          onChange={(event) => setDocumentBack(event.target.value)}
+          onChange={(event) =>
+            event.target.files && setDocumentBack(event.target.files[0])
+          }
         />
       </div>
 
@@ -93,6 +96,7 @@ export default function SendIdentity() {
           type="button"
           label="Confirmar"
           color="primary"
+          disabled={flow.loading}
         />
       </div>
 
