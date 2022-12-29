@@ -22,12 +22,12 @@ export default function DateHour() {
       <Calendar></Calendar>
 
       <div className={styles.textArea}>
-        <div className={styles.textR}>
+        <p className={styles.selectedDateLabel}>
           <FontAwesomeIcon icon={faClock} color="38B6FF" />
-        </div>
-        <p>
-          Horários disponíveis para o dia{' '}
-          <span className={styles.dateValue}>25/12/2022</span>
+          <p>
+            Horários disponíveis para o dia{' '}
+            <span className={styles.dateValue}>25/12/2022</span>
+          </p>
         </p>
       </div>
 
@@ -40,7 +40,7 @@ export default function DateHour() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faInfoCircle}
-          onClick={() => router.push('/quadras/detalhes')} //ajustar rota!
+          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
           type="button"
           label="Show, vamos aos detalhes!"
           color="primary"
@@ -48,7 +48,7 @@ export default function DateHour() {
 
         <Button
           icon={faBookOpen}
-          onClick={() => router.push('/quadras/detalhes')} //ajustar rota!
+          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
           type="button"
           label="Listar agendamentos"
           color="secondary"
@@ -56,7 +56,7 @@ export default function DateHour() {
 
         <Button
           icon={faPrint}
-          onClick={() => router.push('/quadras/detalhes')} //ajustar rota!
+          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
           type="button"
           label="Imprimir Agendamentos"
           color="secondary"

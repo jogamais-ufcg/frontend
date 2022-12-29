@@ -76,3 +76,13 @@
 .dateValue {
   color: var(--blue-lighter);
 }
+
+.selectedDateLabel {
+  display: flex;
+}
+
+.selectedDateLabel > svg {
+  color: var(--blue-lighter);
+  width: 20px;
+  margin-right: 5px;
+}
