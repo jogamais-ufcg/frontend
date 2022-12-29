@@ -46,31 +46,33 @@
 
 .buttonContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-top: 1rem;
 }
 
-.buttonR{
-  margin-right: 1rem;
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
   width: 100%;
+  margin-top: 1rem;
 }
 
-.buttonL{
-  margin-left: 1rem;
-  width: 100%;
-}
-
-.textArea{
+.textArea {
   display: flex;
-  margin-top: 1rem;  
+  margin-top: 1rem;
 }
 
-.textR{
+.textR {
   margin-right: 1rem;
 }
-.textL{
+.textL {
   margin-left: 0.3rem;
+}
+
+.dateValue {
+  color: var(--blue-lighter);
 }
