@@ -1,0 +1,88 @@
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.mainInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.inputContainer > div {
+  margin-top: 1rem;
+}
+
+.redefinir {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin-left: 2rem;
+  font-size: small;
+  justify-content: center;
+}
+
+.redefinir > p {
+  color: #c8c8c8;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.textArea {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.textR {
+  margin-right: 1rem;
+}
+.textL {
+  margin-left: 0.3rem;
+}
+
+.dateValue {
+  color: var(--blue-lighter);
+}
+
+.selectedDateLabel {
+  display: flex;
+}
+
+.selectedDateLabel > svg {
+  color: var(--blue-lighter);
+  width: 20px;
+  margin-right: 5px;
+}
