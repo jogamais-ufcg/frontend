@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
@@ -18,12 +18,6 @@ export default function SendIdentity() {
   const [cpf, setCpf] = useState('');
   const [documentFront, setDocumentFront] = useState<File | null>(null);
   const [documentBack, setDocumentBack] = useState<File | null>(null);
-
-  useEffect(() => {
-    if (!flow.firstStepData) {
-      router.replace('/cadastrar');
-    }
-  }, [router, flow]);
 
   const onSubmit = async () => {
     if (documentFront === null || documentBack === null) {

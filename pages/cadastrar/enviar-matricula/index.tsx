@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useRegisterFlow } from 'contexts/registerFlow';
@@ -20,12 +20,6 @@ export default function SendEnrollment() {
   const [enrollmentDocument, setEnrollmentDocument] = useState<File | null>(
     null
   );
-
-  useEffect(() => {
-    if (!flow.firstStepData) {
-      router.replace('/cadastrar');
-    }
-  }, [router, flow]);
 
   const onSubmit = async () => {
     if (enrollmentDocument === null) {
