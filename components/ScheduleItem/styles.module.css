@@ -34,19 +34,25 @@
 .infos {
   background-color: var(--gray);
   flex: 1;
-  border-top-left-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
   text-align: start;
+  border-top-left-radius: 15px;
 }
 
 .infos h2 {
   font-size: 1rem;
 }
 
-.infosRounded {
+.infosRoundedStandard {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.infosRoundedNotExpanded {
   border-bottom-left-radius: 15px;
 }
 
