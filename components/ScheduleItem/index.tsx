@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 interface ScheduleItemProps {
   title: string;
   subtitle: string;
-  onDelete: () => void;
+  onDelete?: () => void;
   expandedInformation?: {
     title: string;
     body: string;
@@ -25,7 +25,9 @@ function ScheduleItem({
     <div className={styles.container}>
       <div>
         <button
-          className={`${styles.infos} ${!isExpanded && styles.infosRounded}`}
+          className={`${styles.infos} ${
+            !isExpanded && styles.infosRoundedNotExpanded
+          } ${!isExpanded && !onDelete && styles.infosRoundedStandard}`}
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <h2>{title}</h2>
@@ -37,14 +39,16 @@ function ScheduleItem({
           </div>
         </button>
 
-        <button
-          className={`${styles.deleteBtn} ${
-            !isExpanded && styles.deleteBtnRounded
-          }`}
-          onClick={() => onDelete()}
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+        {onDelete && (
+          <button
+            className={`${styles.deleteBtn} ${
+              !isExpanded && styles.deleteBtnRounded
+            }`}
+            onClick={() => onDelete()}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+        )}
       </div>
 
       {expandedInformation && isExpanded && (
