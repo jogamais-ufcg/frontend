@@ -15,6 +15,7 @@ import { useState } from 'react';
 
 export default function SeeCourt() {
   const router = useRouter();
+  const { id: courtId } = router.query;
   const [isUser] = useState(false);
 
   return (
@@ -64,7 +65,7 @@ export default function SeeCourt() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push('/redefinir-senha/sucesso')}
+                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Beleza, quero agendar!"
@@ -76,7 +77,7 @@ export default function SeeCourt() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push('/redefinir-senha/sucesso')}
+                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Escolher data e horário"
