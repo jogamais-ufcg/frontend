@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function DateHour() {
   const router = useRouter();
+  const { id: courtId } = router.query;
 
   return (
     <PageContainer headTitle="Data e Hora">
@@ -40,7 +41,7 @@ export default function DateHour() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faInfoCircle}
-          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
+          onClick={() => router.push(`/quadras/${courtId}/agendar/detalhes`)}
           type="button"
           label="Show, vamos aos detalhes!"
           color="primary"
