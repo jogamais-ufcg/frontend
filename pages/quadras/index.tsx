@@ -83,7 +83,7 @@ export default function Courts() {
               index={index}
               title={court.name}
               description={court.description}
-              href="/quadras"
+              href={`/quadras/${court.id}`}
             />
           ))}
         </div>
