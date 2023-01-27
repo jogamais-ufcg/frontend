@@ -38,7 +38,7 @@ export default function NewPassword() {
       <div className={styles.button}>
         <Button
           icon={faSignIn}
-          onClick={() => router.push('/confirma-redefinicao')} //o nome da rota pode sofrer alterações
+          onClick={() => router.push('/nova-senha/sucesso')}
           type="button"
           label="Confirmar redefinição"
         />

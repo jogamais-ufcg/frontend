@@ -32,7 +32,7 @@ export default function ResetPassword() {
 
       <div className={styles.buttonContainer}>
         <Button
-          onClick={() => router.push('/redefinir-senha/sucesso')}
+          onClick={() => router.push('/redefinir-senha/verificar-email')}
           type="button"
           label="Confirmar"
           color="primary"
