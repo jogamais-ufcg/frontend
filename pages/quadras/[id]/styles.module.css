@@ -9,7 +9,7 @@
 
 .imgContainer {
   height: 12rem;
-  background-image: url('../../public/quadra.png');
+  background-image: url('../../../public/quadra.png');
   background-size: cover;
   border-bottom-left-radius: 0.625rem;
   border-bottom-right-radius: 0.938rem;
