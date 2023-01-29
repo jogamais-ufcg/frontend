@@ -1,5 +1,5 @@
 import {faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
+import {useRouter } from 'next/router';
 import BackHeader from 'components/BackHeader';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
@@ -7,8 +7,7 @@ import styles from './styles.module.css';
 import UserItem from 'components/UserItem';
 
 export default function UserListDescription() {
-  const router = useRouter();
-  
+
   return (
     <PageContainer headTitle="Gerenciar Usuários">
       <BackHeader title="Gerenciar Usuários" />
