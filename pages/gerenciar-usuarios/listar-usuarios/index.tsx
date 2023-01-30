@@ -1,5 +1,4 @@
 import {faSearch } from '@fortawesome/free-solid-svg-icons';
-import {useRouter } from 'next/router';
 import BackHeader from 'components/BackHeader';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
