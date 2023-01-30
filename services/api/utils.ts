@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const DEFAULT_ERROR_MESSAGE = 'Erro ao conectar com o servidor!';
 
 const api = axios.create({
-  baseURL: 'https://icy-glade-2080.fly.dev',
+  baseURL: 'http://localhost:8080',
 });
 
 interface FetchOptions {
-  data: unknown;
+  data?: unknown;
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  params?: AxiosRequestConfig['params'];
 }
 
 export async function fetchApi(url: string, options?: FetchOptions) {
@@ -23,6 +24,7 @@ export async function fetchApi(url: string, options?: FetchOptions) {
       url,
       method: options?.method || 'GET',
       data: options?.data,
+      params: options?.params,
       headers: {
         'Content-Type': contentType,
       },
