@@ -11,13 +11,18 @@ interface FetchOptions {
   data?: unknown;
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   params?: AxiosRequestConfig['params'];
+  isUrlEncoded?: boolean;
 }
 
 export async function fetchApi(url: string, options?: FetchOptions) {
-  const contentType =
+  let contentType =
     options?.data instanceof FormData
       ? 'multipart/form-data'
       : 'application/json';
+
+  if (options?.isUrlEncoded) {
+    contentType = 'application/x-www-form-urlencoded';
+  }
 
   try {
     const response = await api({
