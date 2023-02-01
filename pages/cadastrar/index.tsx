@@ -59,11 +59,6 @@ export default function Register() {
       return;
     }
 
-    if (data.cellphone.length < 11) {
-      toast.error('O celular precisa ter no mínimo 11 digitos');
-      return;
-    }
-
     flow.confirmFirstStep({
       ...data,
       isStudent,
