@@ -2,11 +2,12 @@ import { createContext, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import * as storage from 'services/storage';
+import { User } from 'utils/types';
 
 type AuthContextType =
   | {
       accessToken?: string;
-      user?: unknown;
+      user?: User;
       loading: boolean;
       login: (email: string, password: string) => Promise<boolean>;
     }
@@ -21,7 +22,7 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(false);
   const [accessToken, setAccessToken] = useState<string>();
-  const [user, setUser] = useState<unknown>();
+  const [user, setUser] = useState<User>();
 
   const login = async (email: string, password: string) => {
     try {
@@ -41,10 +42,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setLoading(false);
       return true;
     } catch (error) {
-      setLoading(false);
       storage.logout();
+      setLoading(false);
 
-      toast.error('Erro ao realizar login');
+      toast.error('Erro ao realizar login, verifique suas credenciais!');
       return false;
     }
   };

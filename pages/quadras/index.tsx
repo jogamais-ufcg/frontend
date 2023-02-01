@@ -9,18 +9,21 @@ import {
 import PageContainer from 'components/PageContainer';
 import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Input from 'components/Input';
 import { mockedCourts } from 'services/data';
 import CourtItem from 'components/CourtItem';
 import Modal from '../../components/Modal';
+import { useAuth } from 'contexts/auth';
+import { useRouter } from 'next/router';
 
 interface OptionsMenuProps {
   isLogged: boolean;
   isAdmin: boolean;
+  userName?: string;
 }
 
-function OptionsMenu({ isLogged, isAdmin }: OptionsMenuProps) {
+function OptionsMenu({ isLogged, isAdmin, userName }: OptionsMenuProps) {
   if (isLogged) {
     if (isAdmin) {
       return (
@@ -34,7 +37,7 @@ function OptionsMenu({ isLogged, isAdmin }: OptionsMenuProps) {
     return (
       <>
         <FontAwesomeIcon icon={faBars} />
-        <h3>Olá, Davi!</h3>
+        <h3>Olá, {userName?.split(' ')[0]}!</h3>
       </>
     );
   }
@@ -48,9 +51,19 @@ function OptionsMenu({ isLogged, isAdmin }: OptionsMenuProps) {
 }
 
 export default function Courts() {
-  const [isAdmin] = useState(true);
+  const router = useRouter();
+  const auth = useAuth();
+  const isAdmin = useMemo(() => !!auth.user?.isAdmin, [auth.user]);
+
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if (!!auth.user) {
+      setOpen(true);
+      return;
+    }
+
+    router.push('/login');
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -59,7 +72,11 @@ export default function Courts() {
         <Image src={logo} alt="Joga Mais UFCG" width={100} />
 
         <button onClick={handleOpen}>
-          <OptionsMenu isAdmin={isAdmin} isLogged={true} />
+          <OptionsMenu
+            userName={auth.user?.name}
+            isAdmin={isAdmin}
+            isLogged={!!auth.user}
+          />
         </button>
       </header>
 

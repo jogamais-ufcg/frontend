@@ -5,6 +5,7 @@ export interface User {
   email: string;
   isStudent: boolean;
   isUFCGMember: boolean;
+  isAdmin?: boolean;
   phoneNumber: string;
   validUntil: string;
 }

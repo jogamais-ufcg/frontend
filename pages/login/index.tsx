@@ -63,6 +63,7 @@ export default function Login() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faCheck}
+          disabled={auth.loading}
           onClick={submitForm}
           type="button"
           label="Confirmar"
