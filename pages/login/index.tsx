@@ -2,26 +2,29 @@ import { useState } from 'react';
 import { faEnvelope, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
-import api from 'services/api';
 import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
+import { useAuth } from 'contexts/auth';
 
 export default function Login() {
-  // const router = useRouter();
+  const router = useRouter();
+  const auth = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const submitForm = async () => {
-    try {
-      const response = await api.auth.login(email, password);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+    const success = await auth.login(email, password);
+
+    if (!success) {
+      return;
     }
+
+    router.push('/quadras');
   };
 
   return (
@@ -60,7 +63,7 @@ export default function Login() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faCheck}
-          onClick={() => submitForm()}
+          onClick={submitForm}
           type="button"
           label="Confirmar"
           color="primary"

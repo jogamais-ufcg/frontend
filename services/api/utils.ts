@@ -1,10 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig } from 'axios';
+import * as storage from 'services/storage';
 
 const DEFAULT_ERROR_MESSAGE = 'Erro ao conectar com o servidor!';
 
 const api = axios.create({
   baseURL: 'http://localhost:8080',
+});
+
+api.interceptors.request.use(async (config) => {
+  const token = storage.getToken();
+
+  if (token) {
+    config.headers.authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 interface FetchOptions {
