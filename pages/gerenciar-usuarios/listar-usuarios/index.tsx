@@ -22,6 +22,9 @@ export default function UserListDescription() {
           ['Luis Eduardo Fernandes Ricarte', 'luis.ricarte@ccc.ufcg.edu.br'],
           ['Adriano de Santos Lira Júnior', 'adriano.junior@ccc.ufcg.edu.br'],
           ['Sofia Rocha Cavalcanti', 'sofia.cavalcanti@ccc.ufcg.edu.br'],
+          ['Luis Eduardo Fernandes Ricarte', 'luis.ricarte@ccc.ufcg.edu.br'],
+          ['Luis Eduardo Fernandes Ricarte', 'luis.ricarte@ccc.ufcg.edu.br'],
+          ['Adriano de Santos Lira Júnior', 'adriano.junior@ccc.ufcg.edu.br'],
         ].map((user) => {
           return <UserItem key={user[1]} title={user[0]} subtitle={user[1]} />;
         })}

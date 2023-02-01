@@ -26,5 +26,4 @@ function UserItem({ title, subtitle }: UserItemProps) {
     </div>
   );
 }
-
 export default UserItem;
