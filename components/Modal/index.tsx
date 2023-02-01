@@ -10,6 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useAuth } from 'contexts/auth';
 
 interface ModalProps {
   open: boolean;
@@ -18,6 +19,7 @@ interface ModalProps {
 }
 
 function Modal({ open, onOpen, onClose }: ModalProps) {
+  const auth = useAuth();
   const router = useRouter();
   const [width, setWindowWidth] = useState(0);
 
@@ -72,7 +74,11 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
                 <p>Meus agendamentos</p>
               </ListItemButton>
             </ListItem>
-            <ListItem key="logout" className={styles.listItem}>
+            <ListItem
+              onClick={auth.logout}
+              key="logout"
+              className={styles.listItem}
+            >
               <ListItemButton>
                 <ListItemIcon>
                   <LogoutIcon fontSize="large" />

@@ -13,7 +13,7 @@ import { useMemo, useState } from 'react';
 import Input from 'components/Input';
 import { mockedCourts } from 'services/data';
 import CourtItem from 'components/CourtItem';
-import Modal from '../../components/Modal';
+import Modal from 'components/Modal';
 import { useAuth } from 'contexts/auth';
 import { useRouter } from 'next/router';
 

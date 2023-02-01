@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { createContext, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
@@ -10,6 +11,7 @@ type AuthContextType =
       user?: User;
       loading: boolean;
       login: (email: string, password: string) => Promise<boolean>;
+      logout: () => void;
     }
   | undefined;
 
@@ -20,6 +22,8 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [accessToken, setAccessToken] = useState<string>();
   const [user, setUser] = useState<User>();
@@ -50,6 +54,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
+  const logout = () => {
+    storage.logout();
+    setAccessToken(undefined);
+    setUser(undefined);
+
+    toast.success('Logout realizado com sucesso!');
+
+    router.push('/login');
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -57,6 +71,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         accessToken,
         user,
         login,
+        logout,
       }}
     >
       {children}
