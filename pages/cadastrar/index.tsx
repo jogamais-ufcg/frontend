@@ -135,7 +135,7 @@ export default function Register() {
           id="checkbox-1"
           checked={isUFCGMember}
           onChange={() => setIsUFCGMember(!isUFCGMember)}
-        ></input>
+        />
         <label htmlFor="checkbox-1">Faço parte da UFCG</label>
       </div>
 

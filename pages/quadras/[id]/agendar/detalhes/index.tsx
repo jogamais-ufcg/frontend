@@ -4,17 +4,18 @@ import {
   faCircleUser,
   faPhone,
 } from '@fortawesome/free-solid-svg-icons';
-import Input from '../../components/Input';
+import Input from 'components/Input';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import Button from '../../components/Button';
-import PageContainer from '../../components/PageContainer';
+import Button from 'components/Button';
+import PageContainer from 'components/PageContainer';
 import BackHeader from 'components/BackHeader';
 import { useState } from 'react';
 
 export default function MoreInformation() {
   const [isUser] = useState(false);
   const router = useRouter();
+  const { id: courtId } = router.query;
 
   return (
     <PageContainer headTitle="MoreInformation">
@@ -59,7 +60,7 @@ export default function MoreInformation() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faCheck}
-          onClick={() => router.push('/login')}
+          onClick={() => router.push(`/quadras/${courtId}/agendar/sucesso`)}
           type="button"
           label="Confirmar"
           color="primary"

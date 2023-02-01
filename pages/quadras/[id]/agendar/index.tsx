@@ -6,14 +6,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import Button from '../../../components/Button';
-import PageContainer from '../../../components/PageContainer';
-import BackHeader from '../../../components/BackHeader';
+import Button from 'components/Button';
+import PageContainer from 'components/PageContainer';
+import BackHeader from 'components/BackHeader';
 import { Calendar } from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function DateHour() {
   const router = useRouter();
+  const { id: courtId } = router.query;
 
   return (
     <PageContainer headTitle="Data e Hora">
@@ -40,7 +41,7 @@ export default function DateHour() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faInfoCircle}
-          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
+          onClick={() => router.push(`/quadras/${courtId}/agendar/detalhes`)}
           type="button"
           label="Show, vamos aos detalhes!"
           color="primary"

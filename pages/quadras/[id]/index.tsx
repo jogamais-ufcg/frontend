@@ -6,15 +6,16 @@ import {
   faPen,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FreeBackHeader from 'components/FreeBackHeader';
 import { useState } from 'react';
 
-export default function VerQuadra() {
+export default function SeeCourt() {
   const router = useRouter();
+  const { id: courtId } = router.query;
   const [isUser] = useState(false);
 
   return (
@@ -64,7 +65,7 @@ export default function VerQuadra() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push('/redefinir-senha/sucesso')}
+                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Beleza, quero agendar!"
@@ -76,7 +77,7 @@ export default function VerQuadra() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push('/redefinir-senha/sucesso')}
+                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Escolher data e horário"

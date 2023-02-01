@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../public/brand/logo.png';
-import hand from '../../public/illustrations/hand.svg';
+import Button from 'components/Button';
+import logo from '../../../../../public/brand/logo.png';
+import hand from '../../../../../public/illustrations/hand.svg';
 import styles from './styles.module.css';
-import Button from '../../components/Button';
 
 export default function ScheduleSuccess() {
   const router = useRouter();
@@ -37,9 +37,9 @@ export default function ScheduleSuccess() {
       <div className={styles.buttonsContainer}>
         <Button
           icon={faArrowLeft}
-          onClick={() => router.push('/login')}
+          onClick={() => router.replace('/quadras')}
           type="button"
-          label="👀 Voltar para as quadras"
+          label="Voltar para as quadras"
           color="secondary"
         />
       </div>

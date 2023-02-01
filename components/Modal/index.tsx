@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 interface ModalProps {
   open: boolean;
@@ -17,6 +18,7 @@ interface ModalProps {
 }
 
 function Modal({ open, onOpen, onClose }: ModalProps) {
+  const router = useRouter();
   const [width, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -58,7 +60,11 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
                 <p>Editar perfil</p>
               </ListItemButton>
             </ListItem>
-            <ListItem key="my-appointments" className={styles.listItem}>
+            <ListItem
+              key="my-appointments"
+              className={styles.listItem}
+              onClick={() => router.push('/meus-agendamentos')}
+            >
               <ListItemButton>
                 <ListItemIcon>
                   <HistoryIcon fontSize="large" />
