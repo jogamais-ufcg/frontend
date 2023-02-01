@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin: 0.5rem 0;  
+}
+
+.container > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+.container > button > h3 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+.container > button > p {
+  color: var(--text-gray);
+}
+
+.infos {
+  background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: start;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.infos h2 {
+  font-size: 1rem;
+}
+
+.infos > div {
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--blue-lighter);
+}
+
+.infos svg {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.textColor > p {
+  color: var(--blue-lighter);
+}
+
+.textSubtitle > p {
+  color: var(--text-gray);
+}
