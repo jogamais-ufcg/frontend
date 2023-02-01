@@ -10,7 +10,10 @@ export const firstStepSchema = yup.object({
     .string()
     .required('Senha é obrigatória')
     .min(8, 'A senha precisa ter no mínimo 8 caracteres'),
-  cellphone: yup.string().required('Celular é obrigatório'),
+  cellphone: yup
+    .string()
+    .required('Celular é obrigatório')
+    .length(11, 'O celular precisa ter 11 digitos'),
   isUFCGMember: yup.boolean().default(false),
   isStudent: yup.boolean().default(false),
 });
