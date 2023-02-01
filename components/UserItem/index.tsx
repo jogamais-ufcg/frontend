@@ -1,4 +1,3 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
@@ -8,16 +7,11 @@ interface UserItemProps {
   subtitle: string;
 }
 
-function UserItem({
-  title,
-  subtitle,
-}: UserItemProps) {
-
+function UserItem({ title, subtitle }: UserItemProps) {
   return (
     <div className={styles.container}>
       <div>
-        <button
-          className={styles.infos}>
+        <button className={styles.infos}>
           <h2>{title}</h2>
           <div className={styles.textSubtitle}>
             <p>{subtitle}</p>
@@ -25,11 +19,10 @@ function UserItem({
           <div className={styles.textColor}>
             <FontAwesomeIcon icon={faGraduationCap} />
 
-            <p >Faço parte da UFCG</p>
+            <p>Faço parte da UFCG</p>
           </div>
         </button>
       </div>
-
     </div>
   );
 }

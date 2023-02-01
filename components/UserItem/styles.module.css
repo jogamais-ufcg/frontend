@@ -4,7 +4,6 @@
   flex-direction: column;
   margin: 0.5rem 0;
   height: 100%;
-  
 }
 
 .container > div {
@@ -17,7 +16,6 @@
   margin-top: 10px;
   border-radius: 15px;
 }
-
 
 .container > button > h3 {
   font-size: 1rem;
