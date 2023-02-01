@@ -6,7 +6,6 @@ import styles from './styles.module.css';
 interface UserItemProps {
   title: string;
   subtitle: string;
-  aluno: boolean;
 }
 
 function UserItem({

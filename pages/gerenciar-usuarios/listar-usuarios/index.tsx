@@ -22,28 +22,23 @@ export default function UserListDescription() {
       <div className={styles.userContainer}>
       <UserItem
       title="Luis Eduardo Fernandes Ricarte"
-      subtitle="luis.ricarte@ccc.ufcg.edu.br">
-      </UserItem>
-
+      subtitle="luis.ricarte@ccc.ufcg.edu.br"/>
+      
       <UserItem
       title="Adriano de Santos Lira Júnior"
-      subtitle="adriano.junior@ccc.ufcg.edu.br">
-      </UserItem>
+      subtitle="adriano.junior@ccc.ufcg.edu.br"/>
 
       <UserItem
       title="Sofia Rocha Cavalcanti"
-      subtitle="sofia.cavalcanti@ccc.ufcg.edu.br">
-      </UserItem>
+      subtitle="sofia.cavalcanti@ccc.ufcg.edu.br"/>
+    
+      <UserItem
+      title="Luis Eduardo Fernandes Ricarte"
+      subtitle="luis.ricarte@ccc.ufcg.edu.br"/>
 
       <UserItem
       title="Luis Eduardo Fernandes Ricarte"
-      subtitle="luis.ricarte@ccc.ufcg.edu.br">
-      </UserItem>
-
-      <UserItem
-      title="Luis Eduardo Fernandes Ricarte"
-      subtitle="luis.ricarte@ccc.ufcg.edu.br">
-      </UserItem>
+      subtitle="luis.ricarte@ccc.ufcg.edu.br"/>
       </div>
       
     </PageContainer>
