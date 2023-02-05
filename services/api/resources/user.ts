@@ -20,6 +20,9 @@ interface EditUser {
 }
 
 const endpoints = {
+  getAll() {
+    return fetchApi('/users?page=0');
+  },
   get(email: string) {
     return fetchApi(`/users/${email}`);
   },

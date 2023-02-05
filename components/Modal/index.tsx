@@ -8,6 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
+import GroupIcon from '@mui/icons-material/Group';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from 'contexts/auth';
@@ -34,6 +35,39 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
     setWindowWidth(width);
   };
 
+  const commonOptions = [
+    {
+      label: 'Sair da conta',
+      onClick: auth.logout,
+      icon: <LogoutIcon fontSize="large" />,
+    },
+  ];
+
+  const userOptions = [
+    {
+      label: 'Editar perfil',
+      icon: <EditIcon fontSize="large" />,
+      onClick: undefined,
+    },
+    {
+      label: 'Meus agendamentos',
+      icon: <HistoryIcon fontSize="large" />,
+      onClick: () => router.push('/meus-agendamentos'),
+    },
+    ...commonOptions,
+  ];
+
+  const adminOptions = [
+    {
+      label: 'Gerenciar usuários',
+      icon: <GroupIcon fontSize="large" />,
+      onClick: () => router.push('/usuarios/listar'),
+    },
+    ...commonOptions,
+  ];
+
+  const options = auth.user?.isAdmin ? adminOptions : userOptions;
+
   return (
     <SwipeableDrawer
       anchor={width < 1280 ? 'bottom' : 'left'}
@@ -54,38 +88,20 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
               </div>
             }
           >
-            <ListItem key="edit-profile" className={styles.listItem}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <EditIcon fontSize="large" />
-                </ListItemIcon>
-                <p>Editar perfil</p>
-              </ListItemButton>
-            </ListItem>
-            <ListItem
-              key="my-appointments"
-              className={styles.listItem}
-              onClick={() => router.push('/meus-agendamentos')}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <HistoryIcon fontSize="large" />
-                </ListItemIcon>
-                <p>Meus agendamentos</p>
-              </ListItemButton>
-            </ListItem>
-            <ListItem
-              onClick={auth.logout}
-              key="logout"
-              className={styles.listItem}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <LogoutIcon fontSize="large" />
-                </ListItemIcon>
-                <p>Sair da conta</p>
-              </ListItemButton>
-            </ListItem>
+            {options.map((option, index) => {
+              return (
+                <ListItem
+                  key={index}
+                  className={styles.listItem}
+                  onClick={option.onClick}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>{option.icon}</ListItemIcon>
+                    <p>{option.label}</p>
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
           </List>
         </div>
       </Box>
