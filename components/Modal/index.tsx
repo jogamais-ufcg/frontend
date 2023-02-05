@@ -54,7 +54,11 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
               </div>
             }
           >
-            <ListItem key="edit-profile" className={styles.listItem}>
+            <ListItem
+              key="edit-profile"
+              className={styles.listItem}
+              onClick={() => router.push('/editar-perfil')}
+            >
               <ListItemButton>
                 <ListItemIcon>
                   <EditIcon fontSize="large" />
