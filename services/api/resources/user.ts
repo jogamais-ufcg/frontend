@@ -13,6 +13,12 @@ interface CreateUser {
   enrollment?: string;
 }
 
+interface EditUser {
+  name: string | undefined;
+  cellphone: string | undefined;
+  id: number | undefined;
+}
+
 const endpoints = {
   get(email: string) {
     return fetchApi(`/users/${email}`);
@@ -38,6 +44,17 @@ const endpoints = {
     return fetchApi(`/users`, {
       method: 'POST',
       data: formData,
+    });
+  },
+  editUser(user: EditUser) {
+    const data = {
+      name: user.name,
+      phoneNumber: user.cellphone,
+    };
+
+    return fetchApi(`/users/${user.id}`, {
+      method: 'PATCH',
+      data,
     });
   },
 };
