@@ -59,7 +59,7 @@ export default function Courts() {
 
   useEffect(() => {
     getAllCourts();
-  }, []);
+  }, [getAllCourts]);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
