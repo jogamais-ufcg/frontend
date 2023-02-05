@@ -12,16 +12,20 @@ import BackHeader from 'components/BackHeader';
 import { Calendar } from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCourts } from 'hooks/courts';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import api from 'services/api';
+import { useAuth } from 'contexts/auth';
 
 export default function DateHour() {
+  const { user } = useAuth();
   const router = useRouter();
   const { name: courtName } = router.query;
   const { selectedCourt, getCourtByName } = useCourts();
   const [selectedDay, setSelectedDay] = useState(new Date());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [busyAppointments, setBusyAppointments] = useState([]);
+
+  const isAdmin = useMemo(() => user?.isAdmin, [user]);
 
   const getBusyAppointments = useCallback(async () => {
     if (selectedCourt) {
@@ -76,21 +80,25 @@ export default function DateHour() {
           color="primary"
         />
 
-        <Button
-          icon={faBookOpen}
-          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
-          type="button"
-          label="Listar agendamentos"
-          color="secondary"
-        />
+        {isAdmin && (
+          <Button
+            icon={faBookOpen}
+            onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
+            type="button"
+            label="Listar agendamentos"
+            color="secondary"
+          />
+        )}
 
-        <Button
-          icon={faPrint}
-          onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
-          type="button"
-          label="Imprimir Agendamentos"
-          color="secondary"
-        />
+        {isAdmin && (
+          <Button
+            icon={faPrint}
+            onClick={() => router.push('/quadras/detalhes')} // TODO: ajustar rota!
+            type="button"
+            label="Imprimir Agendamentos"
+            color="secondary"
+          />
+        )}
       </div>
     </PageContainer>
   );
