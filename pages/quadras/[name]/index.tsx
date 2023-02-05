@@ -16,6 +16,8 @@ import FreeBackHeader from 'components/FreeBackHeader';
 import { useCourts } from 'hooks/courts';
 import { imagesMapping } from 'utils/images';
 import { StaticImageData } from 'next/image';
+import { useAuth } from 'contexts/auth';
+import { toast } from 'react-toastify';
 
 export default function SeeCourt() {
   const router = useRouter();
@@ -23,6 +25,7 @@ export default function SeeCourt() {
   const [isUser] = useState(true);
   const { selectedCourt, getCourtByName } = useCourts();
   const [image, setImage] = useState<StaticImageData | undefined>(undefined);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (selectedCourt) {
@@ -33,6 +36,15 @@ export default function SeeCourt() {
   useEffect(() => {
     getCourtByName(courtName as string);
   }, []);
+
+  const handleSchedule = () => {
+    if (user) {
+      router.push(`/quadras/${courtName}/agendar`);
+    } else {
+      toast.info('Você precisa estar logado para agendar uma quadra.');
+      router.push('/login');
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -81,7 +93,7 @@ export default function SeeCourt() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push(`/quadras/${courtName}/agendar`)}
+                onClick={handleSchedule}
                 icon={faClock}
                 type="button"
                 label="Beleza, quero agendar!"

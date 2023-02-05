@@ -12,23 +12,45 @@ import BackHeader from 'components/BackHeader';
 import { Calendar } from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCourts } from 'hooks/courts';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import api from 'services/api';
 
 export default function DateHour() {
   const router = useRouter();
   const { name: courtName } = router.query;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { selectedCourt, getCourtByName } = useCourts();
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [busyAppointments, setBusyAppointments] = useState([]);
+
+  const getBusyAppointments = useCallback(async () => {
+    if (selectedCourt) {
+      try {
+        const response = await api.appointment.getByDateAndCourt(
+          selectedDay,
+          selectedCourt.idCourt
+        );
+        setBusyAppointments(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [selectedCourt, selectedDay]);
 
   useEffect(() => {
     getCourtByName(courtName as string);
-  }, [getCourtByName, courtName]);
+  }, []);
+
+  useEffect(() => {
+    getBusyAppointments();
+  }, [selectedCourt, selectedDay]);
 
   return (
     <PageContainer headTitle="Data e Hora">
       <BackHeader title="Escolher data e horário"></BackHeader>
 
-      <Calendar></Calendar>
+      <Calendar value={selectedDay} onClickDay={setSelectedDay} />
 
       <div className={styles.textArea}>
         <p className={styles.selectedDateLabel}>
