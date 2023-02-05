@@ -4,15 +4,17 @@ import {
   faPhone,
   faBan,
 } from '@fortawesome/free-solid-svg-icons';
-import Input from '../../components/Input';
+import Input from '../../../components/Input';
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
-import Button from '../../components/Button';
-import PageContainer from '../../components/PageContainer';
-import BackHeader from '../../components/BackHeader';
+import Button from '../../../components/Button';
+import PageContainer from '../../../components/PageContainer';
+import BackHeader from '../../../components/BackHeader';
 
 export default function Login() {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { email } = router.query;
 
   return (
     <PageContainer headTitle="Login">

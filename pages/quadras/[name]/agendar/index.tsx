@@ -16,6 +16,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import api from 'services/api';
 import { useAuth } from 'contexts/auth';
 import { getReadableDate } from 'utils/strings';
+import { toast } from 'react-toastify';
 
 export default function DateHour() {
   const { user } = useAuth();
@@ -24,21 +25,24 @@ export default function DateHour() {
   const { selectedCourt, getCourtByName } = useCourts();
   const [selectedDay, setSelectedDay] = useState(new Date());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [busyAppointments, setBusyAppointments] = useState([]);
+  const [availableAppointments, setAvailableAppointments] = useState([]);
 
   const isAdmin = useMemo(() => user?.isAdmin, [user]);
 
-  const getBusyAppointments = useCallback(async () => {
+  const getAvailableAppointments = useCallback(async () => {
     if (selectedCourt) {
-      try {
-        const response = await api.appointment.getByDateAndCourt(
-          selectedDay,
-          selectedCourt.idCourt
-        );
-        setBusyAppointments(response.data);
-      } catch (error) {
-        console.log(error);
+      const { data, error } = await api.appointment.getByDateAndCourt(
+        selectedDay,
+        selectedCourt.idCourt
+      );
+
+      if (error) {
+        toast.error(error);
+        return;
       }
+
+      console.log(data);
+      setAvailableAppointments(data);
     }
   }, [selectedCourt, selectedDay]);
 
@@ -49,8 +53,8 @@ export default function DateHour() {
   }, [getCourtByName, courtName]);
 
   useEffect(() => {
-    getBusyAppointments();
-  }, [selectedCourt, selectedDay, getBusyAppointments]);
+    getAvailableAppointments();
+  }, [selectedCourt, selectedDay, getAvailableAppointments]);
 
   return (
     <PageContainer headTitle="Data e Hora">
