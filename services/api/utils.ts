@@ -20,7 +20,7 @@ api.interceptors.request.use(async (config) => {
 
 interface FetchOptions {
   data?: unknown;
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   params?: AxiosRequestConfig['params'];
   isUrlEncoded?: boolean;
 }

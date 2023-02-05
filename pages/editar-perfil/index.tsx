@@ -6,16 +6,33 @@ import {
   faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
-import { useRouter } from 'next/router';
+//import { useRouter } from 'next/router';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
 import BackHeader from 'components/BackHeader';
+import { useAuth } from 'contexts/auth';
 import { useState } from 'react';
-
+import api from '../../services/api';
 export default function EditProfile() {
+  const auth = useAuth();
   const [isStudent] = useState(true);
-  const router = useRouter();
+  const [name, setName] = useState(auth.user?.name);
+  const [phone, setPhone] = useState(auth.user?.phoneNumber);
+  //const router = useRouter();
+  const editProfile = async () => {
+    console.log(phone);
+    if (name == undefined || name == '') {
+      setName(auth.user?.name);
+    }
+    const id = auth.user?.id;
+    const response = await api.user.editUser({
+      name: auth.user?.name,
+      cellphone: auth.user?.phoneNumber,
+      id,
+    });
+    console.log(response);
+  };
 
   return (
     <PageContainer headTitle="editProfile">
@@ -28,6 +45,7 @@ export default function EditProfile() {
             label="Nome Completo"
             placeholder="Nome Completo"
             type="text"
+            onChange={(e) => setName(e.target.value)}
           />
           {isStudent && (
             <p>
@@ -47,6 +65,7 @@ export default function EditProfile() {
             mask="(99) 9 9999-9999"
             placeholder="(99) 9 9999-9999"
             type="tel"
+            onChange={(e) => setPhone(e.target.value)}
           />
           <p>Preferencialmente preencha com Whatsapp disponível</p>
         </div>
@@ -55,7 +74,7 @@ export default function EditProfile() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faPen}
-          onClick={() => router.push('/login')} //ajustar rota!
+          onClick={() => editProfile()} //ajustar rota!
           type="button"
           label="Editar informações "
           color="primary"
