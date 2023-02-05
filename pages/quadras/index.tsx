@@ -11,11 +11,12 @@ import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
 import { useMemo, useState } from 'react';
 import Input from 'components/Input';
-import { mockedCourts } from 'services/data';
 import CourtItem from 'components/CourtItem';
 import Modal from 'components/Modal';
 import { useAuth } from 'contexts/auth';
 import { useRouter } from 'next/router';
+import { useCourts } from 'hooks/courts';
+import { getEncodedUriString } from 'utils/strings';
 
 interface OptionsMenuProps {
   isLogged: boolean;
@@ -54,6 +55,7 @@ export default function Courts() {
   const router = useRouter();
   const auth = useAuth();
   const isAdmin = useMemo(() => !!auth.user?.isAdmin, [auth.user]);
+  const { courts } = useCourts();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -94,13 +96,13 @@ export default function Courts() {
         <Input type="text" placeholder="Pesquise por nome..." icon={faSearch} />
 
         <div className={styles.courtsContainer}>
-          {mockedCourts.map((court, index) => (
+          {courts.map((court, index) => (
             <CourtItem
-              key={court.id}
+              key={court.name}
               index={index}
               title={court.name}
               description={court.description}
-              href={`/quadras/${court.id}`}
+              href={`/quadras/${getEncodedUriString(court.name)}`}
             />
           ))}
         </div>
