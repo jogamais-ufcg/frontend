@@ -6,8 +6,10 @@ import styles from './styles.module.css';
 import Button from '../../../components/Button';
 import PageContainer from '../../../components/PageContainer';
 import { faBan, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function ResSolicitation() {
+  usePrivateRoute(true);
   // const router = useRouter();
 
   return (

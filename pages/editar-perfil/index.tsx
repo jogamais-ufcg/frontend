@@ -14,8 +14,11 @@ import BackHeader from 'components/BackHeader';
 import { useAuth } from 'contexts/auth';
 import { useState } from 'react';
 import api from '../../services/api';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function EditProfile() {
+  usePrivateRoute();
+
   const router = useRouter();
   const auth = useAuth();
   const [isStudent] = useState(true);

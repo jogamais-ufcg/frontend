@@ -7,24 +7,18 @@ import UserItem from 'components/UserItem';
 import api from 'services/api';
 import { useCallback, useEffect, useState } from 'react';
 import { User } from 'utils/types';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-import * as storage from 'services/storage';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function UserListDescription() {
-  const router = useRouter();
+  usePrivateRoute(true);
+
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
 
   const getUsers = useCallback(async () => {
-    if (!storage.getUser()?.isAdmin) {
-      toast.warning('Você não tem permissão para acessar essa página!');
-      router.replace('/quadras');
-      return;
-    }
     const response = await api.user.getAll();
     setUsers(response.data);
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     getUsers();

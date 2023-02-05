@@ -7,8 +7,8 @@ import { User } from 'utils/types';
 
 type AuthContextType =
   | {
-      accessToken?: string;
-      user?: User;
+      accessToken?: string | null;
+      user?: User | null;
       loading: boolean;
       login: (email: string, password: string) => Promise<boolean>;
       logout: () => void;
@@ -26,8 +26,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [accessToken, setAccessToken] = useState<string>();
-  const [user, setUser] = useState<User>();
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const savedUser = storage.getUser();
@@ -74,8 +74,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logout = () => {
     router.push('/login');
     storage.logout();
-    setAccessToken(undefined);
-    setUser(undefined);
+    setAccessToken(null);
+    setUser(null);
 
     toast.success('Logout realizado com sucesso!');
   };

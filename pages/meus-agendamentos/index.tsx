@@ -1,6 +1,7 @@
 import BackHeader from 'components/BackHeader';
 import PageContainer from 'components/PageContainer';
 import ScheduleItem from 'components/ScheduleItem';
+import { usePrivateRoute } from 'hooks/session';
 import { getReadableDate } from 'utils/strings';
 
 const mockedSchedules = [
@@ -23,6 +24,8 @@ const mockedSchedules = [
 ];
 
 export default function UserSchedules() {
+  usePrivateRoute();
+
   return (
     <PageContainer headTitle="Agendamentos">
       <BackHeader title="Meus agendamentos" />

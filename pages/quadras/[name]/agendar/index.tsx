@@ -17,8 +17,11 @@ import api from 'services/api';
 import { useAuth } from 'contexts/auth';
 import { getReadableDate } from 'utils/strings';
 import { toast } from 'react-toastify';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function DateHour() {
+  usePrivateRoute();
+
   const { user } = useAuth();
   const router = useRouter();
   const { name: courtName } = router.query;

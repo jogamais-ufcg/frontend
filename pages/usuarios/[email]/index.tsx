@@ -10,8 +10,11 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import PageContainer from '../../../components/PageContainer';
 import BackHeader from '../../../components/BackHeader';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function Login() {
+  usePrivateRoute();
+
   const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { email } = router.query;

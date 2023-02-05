@@ -11,8 +11,11 @@ import Button from 'components/Button';
 import PageContainer from 'components/PageContainer';
 import BackHeader from 'components/BackHeader';
 import { useState } from 'react';
+import { usePrivateRoute } from 'hooks/session';
 
 export default function MoreInformation() {
+  usePrivateRoute();
+
   const [isUser] = useState(false);
   const router = useRouter();
   const { id: courtId } = router.query;
