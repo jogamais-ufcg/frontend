@@ -15,6 +15,7 @@ import { useCourts } from 'hooks/courts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import api from 'services/api';
 import { useAuth } from 'contexts/auth';
+import { getReadableDate } from 'utils/strings';
 
 export default function DateHour() {
   const { user } = useAuth();
@@ -42,7 +43,9 @@ export default function DateHour() {
   }, [selectedCourt, selectedDay]);
 
   useEffect(() => {
-    getCourtByName(courtName as string);
+    if (courtName) {
+      getCourtByName(courtName as string);
+    }
   }, [getCourtByName, courtName]);
 
   useEffect(() => {
@@ -53,16 +56,18 @@ export default function DateHour() {
     <PageContainer headTitle="Data e Hora">
       <BackHeader title="Escolher data e horário"></BackHeader>
 
-      <Calendar value={selectedDay} onClickDay={setSelectedDay} />
+      <Calendar value={selectedDay} onClickDay={setSelectedDay} locale="pt" />
 
       <div className={styles.textArea}>
-        <p className={styles.selectedDateLabel}>
+        <div className={styles.selectedDateLabel}>
           <FontAwesomeIcon icon={faClock} color="38B6FF" />
           <p>
             Horários disponíveis para o dia{' '}
-            <span className={styles.dateValue}>25/12/2022</span>
+            <span className={styles.dateValue}>
+              {getReadableDate(selectedDay, false)}
+            </span>
           </p>
-        </p>
+        </div>
       </div>
 
       <div className={styles.buttonGrid}>
