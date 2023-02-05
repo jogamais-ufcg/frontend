@@ -9,3 +9,21 @@ export interface User {
   phoneNumber: string;
   validUntil: string;
 }
+
+export interface CourtRules {
+  idCourtRules: number;
+  openingHour: number;
+  closingHour: number;
+  appointmentDuration: number;
+  appointmentPeriod: string;
+  recurrenceIntervalPeriod: number;
+  availableDays: string;
+  onlyUfcg: boolean;
+}
+
+export interface Court {
+  name: string;
+  photo: string;
+  description: string;
+  courtRules: CourtRules;
+}
