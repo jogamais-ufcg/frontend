@@ -34,8 +34,9 @@ export default function SeeCourt() {
   }, [selectedCourt]);
 
   useEffect(() => {
+    console.log(courtName);
     getCourtByName(courtName as string);
-  }, []);
+  }, [getCourtByName, courtName]);
 
   const handleSchedule = () => {
     if (user) {
