@@ -8,6 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
+import GroupIcon from '@mui/icons-material/Group';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from 'contexts/auth';
@@ -34,22 +35,38 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
     setWindowWidth(width);
   };
 
-  const userOptions = [
-    {
-      label: 'Editar perfil',
-      icon: <EditIcon fontSize="large" />,
-    },
-    {
-      label: 'Meus agendamentos',
-      icon: <HistoryIcon fontSize="large" />,
-      onClick: () => router.push('/meus-agendamentos'),
-    },
+  const commonOptions = [
     {
       label: 'Sair da conta',
       onClick: auth.logout,
       icon: <LogoutIcon fontSize="large" />,
     },
   ];
+
+  const userOptions = [
+    {
+      label: 'Editar perfil',
+      icon: <EditIcon fontSize="large" />,
+      onClick: undefined,
+    },
+    {
+      label: 'Meus agendamentos',
+      icon: <HistoryIcon fontSize="large" />,
+      onClick: () => router.push('/meus-agendamentos'),
+    },
+    ...commonOptions,
+  ];
+
+  const adminOptions = [
+    {
+      label: 'Gerenciar usuários',
+      icon: <GroupIcon fontSize="large" />,
+      onClick: () => router.push('/usuarios/listar'),
+    },
+    ...commonOptions,
+  ];
+
+  const options = auth.user?.isAdmin ? adminOptions : userOptions;
 
   return (
     <SwipeableDrawer
@@ -71,7 +88,7 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
               </div>
             }
           >
-            {userOptions.map((option, index) => {
+            {options.map((option, index) => {
               return (
                 <ListItem
                   key={index}

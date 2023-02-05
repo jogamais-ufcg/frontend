@@ -1,26 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
+import { User } from 'utils/types';
 
 interface UserItemProps {
-  title: string;
-  subtitle: string;
+  user: User;
 }
 
-function UserItem({ title, subtitle }: UserItemProps) {
+function UserItem({ user }: UserItemProps) {
   return (
     <div className={styles.container}>
       <div>
         <button className={styles.infos}>
-          <h2>{title}</h2>
+          <h2>{user.name}</h2>
           <div className={styles.textSubtitle}>
-            <p>{subtitle}</p>
+            <p>{user.email}</p>
           </div>
-          <div className={styles.textColor}>
-            <FontAwesomeIcon icon={faGraduationCap} />
-
-            <p>Faço parte da UFCG</p>
-          </div>
+          {user.isUFCGMember && (
+            <div className={styles.textColor}>
+              <FontAwesomeIcon icon={faGraduationCap} />
+              <p>Faço parte da UFCG</p>
+            </div>
+          )}
         </button>
       </div>
     </div>

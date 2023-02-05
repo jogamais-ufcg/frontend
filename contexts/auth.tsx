@@ -71,13 +71,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const logout = () => {
+    router.push('/login');
     storage.logout();
     setAccessToken(undefined);
     setUser(undefined);
 
     toast.success('Logout realizado com sucesso!');
-
-    router.push('/login');
   };
 
   return (
