@@ -1,3 +1,5 @@
+import { imagesMapping } from 'utils/images';
+
 export interface User {
   id: number;
   cpf: string;
@@ -21,10 +23,12 @@ export interface CourtRules {
   onlyUfcg: boolean;
 }
 
+export type ImageMapping = typeof imagesMapping;
+
 export interface Court {
   id: number;
   name: string;
-  photo: string;
+  photo: keyof ImageMapping;
   description: string;
   courtRules: CourtRules;
 }

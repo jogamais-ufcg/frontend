@@ -14,12 +14,21 @@ import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FreeBackHeader from 'components/FreeBackHeader';
 import { useCourts } from 'hooks/courts';
+import { imagesMapping } from 'utils/images';
+import { StaticImageData } from 'next/image';
 
 export default function SeeCourt() {
   const router = useRouter();
   const { name: courtName } = router.query;
   const [isUser] = useState(true);
   const { selectedCourt, getCourtByName } = useCourts();
+  const [image, setImage] = useState<StaticImageData | undefined>(undefined);
+
+  useEffect(() => {
+    if (selectedCourt) {
+      setImage(imagesMapping[selectedCourt.photo]);
+    }
+  }, [selectedCourt]);
 
   useEffect(() => {
     getCourtByName(courtName as string);
@@ -27,7 +36,12 @@ export default function SeeCourt() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}>
+      <div
+        className={styles.imgContainer}
+        style={{
+          backgroundImage: `url(${image?.src || ''})`,
+        }}
+      >
         <FreeBackHeader></FreeBackHeader>
       </div>
 
