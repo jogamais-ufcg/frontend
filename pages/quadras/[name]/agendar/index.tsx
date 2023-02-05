@@ -18,7 +18,6 @@ import api from 'services/api';
 export default function DateHour() {
   const router = useRouter();
   const { name: courtName } = router.query;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { selectedCourt, getCourtByName } = useCourts();
   const [selectedDay, setSelectedDay] = useState(new Date());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -40,11 +39,11 @@ export default function DateHour() {
 
   useEffect(() => {
     getCourtByName(courtName as string);
-  }, []);
+  }, [getCourtByName, courtName]);
 
   useEffect(() => {
     getBusyAppointments();
-  }, [selectedCourt, selectedDay]);
+  }, [selectedCourt, selectedDay, getBusyAppointments]);
 
   return (
     <PageContainer headTitle="Data e Hora">
