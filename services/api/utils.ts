@@ -48,7 +48,6 @@ export async function fetchApi(url: string, options?: FetchOptions) {
 
     return { data: response.data, error: null };
   } catch (error: any) {
-    console.log(error);
     return {
       data: null,
       error:

@@ -14,31 +14,34 @@ import BackHeader from 'components/BackHeader';
 import { useAuth } from 'contexts/auth';
 import { useState } from 'react';
 import api from '../../services/api';
+
 export default function EditProfile() {
+  const router = useRouter();
   const auth = useAuth();
   const [isStudent] = useState(true);
   const [name, setName] = useState(auth.user?.name);
   const [phone, setPhone] = useState(auth.user?.phoneNumber);
-  const router = useRouter();
+
   const editProfile = async () => {
     if (name == undefined || name == '') {
       setName(auth.user?.name);
     }
+
     if (phone == undefined || phone == '') {
       setPhone(auth.user?.phoneNumber);
     }
-    console.log(name);
-    console.log(phone);
+
     const id = auth.user?.id;
     const response = await api.user.editUser({
       name: name,
       cellphone: phone,
       id,
     });
-    console.log(response);
+
     if (auth.accessToken != undefined) {
       auth.updateUser(response.data, auth.accessToken);
     }
+
     router.push('/quadras');
   };
 
