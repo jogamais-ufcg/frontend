@@ -22,6 +22,7 @@ export interface CourtRules {
 }
 
 export interface Court {
+  id: number;
   name: string;
   photo: string;
   description: string;
