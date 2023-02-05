@@ -46,12 +46,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const { access_token } = loginResponse.data;
       storage.setToken(access_token);
 
-      const userResponse = await api.user.get(email);
-      const user = userResponse.data;
+      const { data: userReponse } = await api.user.get(email);
 
-      storage.login(access_token, user);
+      const permissions = userReponse.permissions.map(
+        (permission: { id: number; description: string }) =>
+          permission.description
+      );
+
+      userReponse.isAdmin = permissions.includes('ADMIN');
+
+      storage.login(access_token, userReponse);
       setAccessToken(access_token);
-      setUser(user);
+      setUser(userReponse);
 
       setLoading(false);
       return true;
