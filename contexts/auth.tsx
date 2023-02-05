@@ -12,6 +12,7 @@ type AuthContextType =
       loading: boolean;
       login: (email: string, password: string) => Promise<boolean>;
       logout: () => void;
+      updateUser: (user: User, accessToken: string) => void;
     }
   | undefined;
 
@@ -79,6 +80,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     toast.success('Logout realizado com sucesso!');
   };
 
+  const updateUser = (user: User, accessToken: string) => {
+    setUser(user);
+    storage.login(accessToken, user);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -87,6 +93,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         user,
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

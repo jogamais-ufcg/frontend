@@ -47,7 +47,7 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
     {
       label: 'Editar perfil',
       icon: <EditIcon fontSize="large" />,
-      onClick: undefined,
+      onClick: () => router.push('/editar-perfil'),
     },
     {
       label: 'Meus agendamentos',
@@ -58,6 +58,11 @@ function Modal({ open, onOpen, onClose }: ModalProps) {
   ];
 
   const adminOptions = [
+    {
+      label: 'Editar perfil',
+      icon: <EditIcon fontSize="large" />,
+      onClick: () => router.push('/editar-perfil'),
+    },
     {
       label: 'Gerenciar usuários',
       icon: <GroupIcon fontSize="large" />,

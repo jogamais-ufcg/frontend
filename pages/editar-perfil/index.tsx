@@ -6,7 +6,7 @@ import {
   faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
-//import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
@@ -19,19 +19,27 @@ export default function EditProfile() {
   const [isStudent] = useState(true);
   const [name, setName] = useState(auth.user?.name);
   const [phone, setPhone] = useState(auth.user?.phoneNumber);
-  //const router = useRouter();
+  const router = useRouter();
   const editProfile = async () => {
-    console.log(phone);
     if (name == undefined || name == '') {
       setName(auth.user?.name);
     }
+    if (phone == undefined || phone == '') {
+      setPhone(auth.user?.phoneNumber);
+    }
+    console.log(name);
+    console.log(phone);
     const id = auth.user?.id;
     const response = await api.user.editUser({
-      name: auth.user?.name,
-      cellphone: auth.user?.phoneNumber,
+      name: name,
+      cellphone: phone,
       id,
     });
     console.log(response);
+    if (auth.accessToken != undefined) {
+      auth.updateUser(response.data, auth.accessToken);
+    }
+    router.push('/quadras');
   };
 
   return (
