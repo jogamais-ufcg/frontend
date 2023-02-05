@@ -16,3 +16,7 @@ export function getReadableDate(value: Date) {
 
   return `${day}/${month}/${year} às ${hours}h${minutes}`;
 }
+
+export function getEncodedUriString(value: string) {
+  return encodeURIComponent(value);
+}

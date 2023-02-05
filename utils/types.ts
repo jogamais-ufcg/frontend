@@ -1,3 +1,5 @@
+import { imagesMapping } from 'utils/images';
+
 export interface User {
   id: number;
   cpf: string;
@@ -8,4 +10,25 @@ export interface User {
   isAdmin?: boolean;
   phoneNumber: string;
   validUntil: string;
+}
+
+export interface CourtRules {
+  idCourtRules: number;
+  openingHour: number;
+  closingHour: number;
+  appointmentDuration: number;
+  appointmentPeriod: string;
+  recurrenceIntervalPeriod: number;
+  availableDays: string;
+  onlyUfcg: boolean;
+}
+
+export type ImageMapping = typeof imagesMapping;
+
+export interface Court {
+  id: number;
+  name: string;
+  photo: keyof ImageMapping;
+  description: string;
+  courtRules: CourtRules;
 }

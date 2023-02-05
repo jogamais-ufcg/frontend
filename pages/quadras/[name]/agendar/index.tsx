@@ -11,10 +11,18 @@ import PageContainer from 'components/PageContainer';
 import BackHeader from 'components/BackHeader';
 import { Calendar } from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCourts } from 'hooks/courts';
+import { useEffect } from 'react';
 
 export default function DateHour() {
   const router = useRouter();
-  const { id: courtId } = router.query;
+  const { name: courtName } = router.query;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { selectedCourt, getCourtByName } = useCourts();
+
+  useEffect(() => {
+    getCourtByName(courtName as string);
+  }, [getCourtByName, courtName]);
 
   return (
     <PageContainer headTitle="Data e Hora">
@@ -41,7 +49,7 @@ export default function DateHour() {
       <div className={styles.buttonContainer}>
         <Button
           icon={faInfoCircle}
-          onClick={() => router.push(`/quadras/${courtId}/agendar/detalhes`)}
+          onClick={() => router.push(`/quadras/${courtName}/agendar/detalhes`)}
           type="button"
           label="Show, vamos aos detalhes!"
           color="primary"
