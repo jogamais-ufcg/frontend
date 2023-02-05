@@ -28,7 +28,7 @@ export default function DateHour() {
     <PageContainer headTitle="Data e Hora">
       <BackHeader title="Escolher data e horário"></BackHeader>
 
-      <Calendar></Calendar>
+      <Calendar />
 
       <div className={styles.textArea}>
         <p className={styles.selectedDateLabel}>
