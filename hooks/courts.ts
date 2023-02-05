@@ -11,29 +11,28 @@ export function useCourts() {
 
   const getAllCourts = useCallback(async () => {
     setLoading(true);
+    const { data, error } = await api.court.getAll();
+    setLoading(false);
 
-    try {
-      const { data } = await api.court.getAll();
-
-      setCourts(data || []);
-    } catch (error: any) {
-      toast.error(error?.response?.data.error || 'Erro ao buscar quadras');
-    } finally {
-      setLoading(false);
+    if (error) {
+      toast.error(error || 'Erro ao buscar quadras');
+      return;
     }
+
+    setCourts(data || []);
   }, []);
 
   const getCourtByName = useCallback(async (name: string) => {
     setLoading(true);
+    const { data, error } = await api.court.get(name);
+    setLoading(false);
 
-    try {
-      const { data } = await api.court.get(name);
-      setSelectedCourt(data);
-    } catch (error: any) {
-      toast.error(error?.response?.data.error || 'Erro ao buscar quadra');
-    } finally {
-      setLoading(false);
+    if (error) {
+      toast.error(error || 'Erro ao buscar quadra');
+      return;
     }
+
+    setSelectedCourt(data);
   }, []);
 
   useEffect(() => {
