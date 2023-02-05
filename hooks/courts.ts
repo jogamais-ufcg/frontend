@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import { Court } from 'utils/types';
@@ -9,20 +9,21 @@ export function useCourts() {
   const [courts, setCourts] = useState<Court[]>([]);
   const [selectedCourt, setSelectedCourt] = useState<Court | null>(null);
 
-  const getAllCourts = async () => {
+  const getAllCourts = useCallback(async () => {
     setLoading(true);
 
     try {
       const { data } = await api.court.getAll();
+
       setCourts(data || []);
     } catch (error: any) {
       toast.error(error?.response?.data.error || 'Erro ao buscar quadras');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const getCourtByName = async (name: string) => {
+  const getCourtByName = useCallback(async (name: string) => {
     setLoading(true);
 
     try {
@@ -33,11 +34,11 @@ export function useCourts() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getAllCourts();
-  }, []);
+  }, [getAllCourts]);
 
   return {
     courts,
