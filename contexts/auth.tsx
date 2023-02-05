@@ -12,6 +12,7 @@ type AuthContextType =
       loading: boolean;
       login: (email: string, password: string) => Promise<boolean>;
       logout: () => void;
+      updateUser: (user: User, accessToken: string) => void;
     }
   | undefined;
 
@@ -71,13 +72,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const logout = () => {
+    router.push('/login');
     storage.logout();
     setAccessToken(undefined);
     setUser(undefined);
 
     toast.success('Logout realizado com sucesso!');
+  };
 
-    router.push('/login');
+  const updateUser = (user: User, accessToken: string) => {
+    setUser(user);
+    storage.login(accessToken, user);
   };
 
   return (
@@ -88,6 +93,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         user,
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

@@ -31,11 +31,13 @@ export default function SeeCourt() {
     if (selectedCourt) {
       setImage(imagesMapping[selectedCourt.photo]);
     }
-  }, [selectedCourt]);
+  }, [selectedCourt, courtName]);
 
   useEffect(() => {
-    getCourtByName(courtName as string);
-  }, []);
+    if (courtName) {
+      getCourtByName(courtName as string);
+    }
+  }, [getCourtByName, courtName]);
 
   const handleSchedule = () => {
     if (user) {

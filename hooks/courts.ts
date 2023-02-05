@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import { Court } from 'utils/types';
@@ -9,35 +9,35 @@ export function useCourts() {
   const [courts, setCourts] = useState<Court[]>([]);
   const [selectedCourt, setSelectedCourt] = useState<Court | null>(null);
 
-  const getAllCourts = async () => {
+  const getAllCourts = useCallback(async () => {
     setLoading(true);
+    const { data, error } = await api.court.getAll();
+    setLoading(false);
 
-    try {
-      const { data } = await api.court.getAll();
-      setCourts(data || []);
-    } catch (error: any) {
-      toast.error(error?.response?.data.error || 'Erro ao buscar quadras');
-    } finally {
-      setLoading(false);
+    if (error) {
+      toast.error(error || 'Erro ao buscar quadras');
+      return;
     }
-  };
 
-  const getCourtByName = async (name: string) => {
+    setCourts(data || []);
+  }, []);
+
+  const getCourtByName = useCallback(async (name: string) => {
     setLoading(true);
+    const { data, error } = await api.court.get(name);
+    setLoading(false);
 
-    try {
-      const { data } = await api.court.get(name);
-      setSelectedCourt(data);
-    } catch (error: any) {
-      toast.error(error?.response?.data.error || 'Erro ao buscar quadra');
-    } finally {
-      setLoading(false);
+    if (error) {
+      toast.error(error || 'Erro ao buscar quadra');
+      return;
     }
-  };
+
+    setSelectedCourt(data);
+  }, []);
 
   useEffect(() => {
     getAllCourts();
-  }, []);
+  }, [getAllCourts]);
 
   return {
     courts,
