@@ -26,9 +26,16 @@ export interface CourtRules {
 export type ImageMapping = typeof imagesMapping;
 
 export interface Court {
-  id: number;
+  idCourt: number;
   name: string;
   photo: keyof ImageMapping;
   description: string;
   courtRules: CourtRules;
+}
+
+export interface UserAppointment {
+  id: number;
+  startAppointmentDate: string;
+  endAppointmentDate: string;
+  playerList: string;
 }

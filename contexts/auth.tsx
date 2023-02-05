@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import * as storage from 'services/storage';
@@ -27,6 +27,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(false);
   const [accessToken, setAccessToken] = useState<string>();
   const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    const savedUser = storage.getUser();
+    const savedToken = storage.getToken();
+
+    if (savedToken && savedUser) {
+      setAccessToken(savedToken);
+      setUser(savedUser);
+    }
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {

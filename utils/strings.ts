@@ -20,3 +20,7 @@ export function getReadableDate(value: Date) {
 export function getEncodedUriString(value: string) {
   return encodeURIComponent(value);
 }
+
+export function getYearMonthDay(date: Date) {
+  return date.toISOString().split('T')[0];
+}
