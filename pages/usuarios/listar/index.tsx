@@ -4,7 +4,6 @@ import Input from 'components/Input';
 import PageContainer from 'components/PageContainer';
 import styles from './styles.module.css';
 import UserItem from 'components/UserItem';
-import { useAuth } from 'contexts/auth';
 import api from 'services/api';
 import { useCallback, useEffect, useState } from 'react';
 import { User } from 'utils/types';
@@ -14,7 +13,6 @@ import * as storage from 'services/storage';
 
 export default function UserListDescription() {
   const router = useRouter();
-  const auth = useAuth();
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
 
@@ -26,7 +24,7 @@ export default function UserListDescription() {
     }
     const response = await api.user.getAll();
     setUsers(response.data);
-  }, [auth, router]);
+  }, [router]);
 
   useEffect(() => {
     getUsers();
