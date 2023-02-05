@@ -14,8 +14,8 @@ interface CreateUser {
 }
 
 const endpoints = {
-  get(id: string) {
-    return fetchApi(`/users/${id}`);
+  get(email: string) {
+    return fetchApi(`/users/${email}`);
   },
   create(user: CreateUser) {
     const formData = new FormData();
