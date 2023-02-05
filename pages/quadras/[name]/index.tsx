@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react';
 import {
   faCancel,
   faClock,
@@ -11,12 +13,17 @@ import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FreeBackHeader from 'components/FreeBackHeader';
-import { useState } from 'react';
+import { useCourts } from 'hooks/courts';
 
 export default function SeeCourt() {
   const router = useRouter();
-  const { id: courtId } = router.query;
-  const [isUser] = useState(false);
+  const { name: courtName } = router.query;
+  const [isUser] = useState(true);
+  const { selectedCourt, getCourtByName } = useCourts();
+
+  useEffect(() => {
+    getCourtByName(courtName as string);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -26,46 +33,41 @@ export default function SeeCourt() {
 
       <div className={styles.pageContainer}>
         <div className={styles.mainInformation}>
-          <h2>Quadra de Tenis</h2>
+          <h2>{selectedCourt?.name}</h2>
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta
-            efficitur pulvinar. Ut eget ipsum eget odio viverra auctor auctor ut
-            felis. Cras egestas dictum nibh, et porta purus fermentum vitae.
-          </p>
+          <p>{selectedCourt?.description}</p>
         </div>
 
         <div className={styles.infoContainer}>
-          <div className={styles.info}>
-            <FontAwesomeIcon icon={faGraduationCap} />
-            <span>Exclusivo para membros da UFCG</span>
-          </div>
+          {selectedCourt?.courtRules.onlyUfcg && (
+            <div className={styles.info}>
+              <FontAwesomeIcon icon={faGraduationCap} />
+              <span>Exclusivo para membros da UFCG</span>
+            </div>
+          )}
 
           <div className={styles.info}>
             <FontAwesomeIcon icon={faClock} />
-            <span>Abre as 8h30, fecha às 17h</span>
+            <span>
+              Abre as {selectedCourt?.courtRules.openingHour || 8}h, fecha às{' '}
+              {selectedCourt?.courtRules.closingHour || 18}h
+            </span>
           </div>
 
           <div className={styles.info}>
             <FontAwesomeIcon icon={faInfoCircle} />
-            <span>1h30 de duração do agendamento</span>
+            <span>
+              {selectedCourt?.courtRules.appointmentDuration || 60}min de
+              duração do agendamento
+            </span>
           </div>
-
-          {isUser && (
-            <>
-              <div className={styles.info}>
-                <FontAwesomeIcon icon={faInfoCircle} />
-                <span>Possui agendamento recorrente</span>
-              </div>
-            </>
-          )}
         </div>
 
         {isUser ? (
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
+                onClick={() => router.push(`/quadras/${courtName}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Beleza, quero agendar!"
@@ -77,7 +79,7 @@ export default function SeeCourt() {
           <>
             <div className={styles.buttonContainer}>
               <Button
-                onClick={() => router.push(`/quadras/${courtId}/agendar`)}
+                onClick={() => router.push(`/quadras/${courtName}/agendar`)}
                 icon={faClock}
                 type="button"
                 label="Escolher data e horário"

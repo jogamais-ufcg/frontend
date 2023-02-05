@@ -9,7 +9,7 @@ import {
 import PageContainer from 'components/PageContainer';
 import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Input from 'components/Input';
 import CourtItem from 'components/CourtItem';
 import Modal from 'components/Modal';
@@ -55,7 +55,11 @@ export default function Courts() {
   const router = useRouter();
   const auth = useAuth();
   const isAdmin = useMemo(() => !!auth.user?.isAdmin, [auth.user]);
-  const { courts } = useCourts();
+  const { courts, getAllCourts } = useCourts();
+
+  useEffect(() => {
+    getAllCourts();
+  }, []);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {

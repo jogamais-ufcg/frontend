@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import type { Court } from 'utils/types';
-import api from 'services/api';
 import { toast } from 'react-toastify';
+import api from 'services/api';
+import { Court } from 'utils/types';
 
 export function useCourts() {
-  const [courts, setCourts] = useState<Court[]>([]);
   const [loading, setLoading] = useState(false);
+  const [courts, setCourts] = useState<Court[]>([]);
+  const [selectedCourt, setSelectedCourt] = useState<Court | null>(null);
 
-  const fetchCourts = async () => {
+  const getAllCourts = async () => {
     setLoading(true);
 
     try {
@@ -21,12 +22,12 @@ export function useCourts() {
     }
   };
 
-  const getCourt = async (name: string) => {
+  const getCourtByName = async (name: string) => {
     setLoading(true);
 
     try {
       const { data } = await api.court.get(name);
-      return data;
+      setSelectedCourt(data);
     } catch (error: any) {
       toast.error(error?.response?.data.error || 'Erro ao buscar quadra');
     } finally {
@@ -35,8 +36,14 @@ export function useCourts() {
   };
 
   useEffect(() => {
-    fetchCourts();
+    getAllCourts();
   }, []);
 
-  return { courts, loading, getCourt };
+  return {
+    courts,
+    selectedCourt,
+    loading,
+    getAllCourts,
+    getCourtByName,
+  };
 }
