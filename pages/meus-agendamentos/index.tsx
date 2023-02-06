@@ -23,7 +23,6 @@ export default function UserSchedules() {
     );
 
     setAppointments(response.data);
-    console.log(response.data);
   }, [auth]);
 
   useEffect(() => {
