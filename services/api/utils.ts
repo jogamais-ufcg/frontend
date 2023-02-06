@@ -5,7 +5,7 @@ import * as storage from 'services/storage';
 const DEFAULT_ERROR_MESSAGE = 'Erro ao conectar com o servidor!';
 
 const api = axios.create({
-  baseURL: 'https://4bb1-2804-18-7016-131f-a377-d94-854b-59af.sa.ngrok.io',
+  baseURL: 'http://localhost:8080',
 });
 
 api.interceptors.request.use(async (config) => {
