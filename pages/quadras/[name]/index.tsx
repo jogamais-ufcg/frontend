@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
-  faCancel,
   faClock,
   faGraduationCap,
   faInfoCircle,
-  faPen,
-  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button';
 import styles from './styles.module.css';
@@ -22,10 +19,10 @@ import { toast } from 'react-toastify';
 export default function SeeCourt() {
   const router = useRouter();
   const { name: courtName } = router.query;
-  const [isUser] = useState(true);
   const { selectedCourt, getCourtByName } = useCourts();
   const [image, setImage] = useState<StaticImageData | undefined>(undefined);
   const { user } = useAuth();
+  const isAdmin = useMemo(() => !!user?.isAdmin, [user]);
 
   useEffect(() => {
     if (selectedCourt) {
@@ -91,7 +88,19 @@ export default function SeeCourt() {
           </div>
         </div>
 
-        {isUser ? (
+        <div className={styles.buttonContainer}>
+          <Button
+            onClick={handleSchedule}
+            icon={faClock}
+            type="button"
+            label={
+              isAdmin ? 'Escolher data e horário' : 'Beleza, quero agendar!'
+            }
+            color="primary"
+          />
+        </div>
+
+        {/* {!isAdmin ? (
           <>
             <div className={styles.buttonContainer}>
               <Button
@@ -145,7 +154,7 @@ export default function SeeCourt() {
               />
             </div>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

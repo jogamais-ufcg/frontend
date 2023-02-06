@@ -2,7 +2,6 @@ import {
   faInfoCircle,
   faClock,
   faBookOpen,
-  faPrint,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 import Button from 'components/Button';
@@ -18,6 +17,7 @@ import { toast } from 'react-toastify';
 import { usePrivateRoute } from 'hooks/session';
 import { Court } from 'utils/types';
 import { getTomorrowDate } from 'utils/dates';
+import { useRouter } from 'next/router';
 
 interface SelectDateAndHourProps {
   onNextStep: (selectedDateAndHour: Date) => void;
@@ -30,6 +30,7 @@ export function SelectDateAndHour({
 }: SelectDateAndHourProps) {
   usePrivateRoute();
 
+  const router = useRouter();
   const { user } = useAuth();
 
   const [selectedDay, setSelectedDay] = useState(getTomorrowDate());
@@ -87,6 +88,14 @@ export function SelectDateAndHour({
     return isTodayOrBefore || isUnavailableDay;
   };
 
+  const onListSchedulesClick = () => {
+    router.push(
+      `/agendamentos-admin?courtId=${selectedCourt?.idCourt}&selectedDate=${
+        selectedDay.toISOString().split('T')[0]
+      }`
+    );
+  };
+
   useEffect(() => {
     getAvailableAppointments();
   }, [selectedCourt, selectedDay, getAvailableAppointments]);
@@ -128,13 +137,15 @@ export function SelectDateAndHour({
       </div>
 
       <div className={styles.buttonContainer}>
-        <Button
-          icon={faInfoCircle}
-          onClick={confirmDateAndHour}
-          type="button"
-          label="Show, vamos aos detalhes!"
-          color="primary"
-        />
+        {!isAdmin && (
+          <Button
+            icon={faInfoCircle}
+            onClick={confirmDateAndHour}
+            type="button"
+            label="Show, vamos aos detalhes!"
+            color="primary"
+          />
+        )}
 
         {isAdmin && (
           <Button
@@ -142,17 +153,18 @@ export function SelectDateAndHour({
             type="button"
             label="Listar agendamentos"
             color="secondary"
+            onClick={onListSchedulesClick}
           />
         )}
 
-        {isAdmin && (
+        {/* {isAdmin && (
           <Button
             icon={faPrint}
             type="button"
             label="Imprimir Agendamentos"
             color="secondary"
           />
-        )}
+        )} */}
       </div>
     </PageContainer>
   );

@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSignIn,
-  faBars,
-  faPlus,
-  faSearch,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import PageContainer from 'components/PageContainer';
 import logo from 'public/brand/logo.png';
 import styles from './styles.module.css';
@@ -101,11 +96,11 @@ export default function Courts() {
         <aside className={styles.title}>
           <h1>Quadras disponíveis</h1>
 
-          {isAdmin && (
+          {/* {isAdmin && (
             <button>
               <FontAwesomeIcon icon={faPlus} />
             </button>
-          )}
+          )} */}
         </aside>
 
         <Input
