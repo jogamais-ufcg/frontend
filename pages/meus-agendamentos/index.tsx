@@ -2,7 +2,10 @@ import BackHeader from 'components/BackHeader';
 import PageContainer from 'components/PageContainer';
 import ScheduleItem from 'components/ScheduleItem';
 import { usePrivateRoute } from 'hooks/session';
+import { useEffect } from 'react';
 import { getReadableDate } from 'utils/strings';
+import { useAuth } from 'contexts/auth';
+import { fetchApi } from 'services/api/utils';
 
 const mockedSchedules = [
   {
@@ -25,6 +28,18 @@ const mockedSchedules = [
 
 export default function UserSchedules() {
   usePrivateRoute();
+  const auth = useAuth();
+
+  useEffect(() => {
+    const eixe = auth.user?.id;
+    const response = fetchApi(
+      `/appointments/users/my-appointments?id=${eixe}`,
+      {
+        method: 'GET',
+      }
+    );
+    console.log(response);
+  }, []);
 
   return (
     <PageContainer headTitle="Agendamentos">
