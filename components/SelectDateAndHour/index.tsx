@@ -19,7 +19,7 @@ import { usePrivateRoute } from 'hooks/session';
 import { Court } from 'utils/types';
 
 interface SelectDateAndHourProps {
-  onNextStep: () => void;
+  onNextStep: (selectedDateAndHour: Date) => void;
   selectedCourt: Court | null;
 }
 
@@ -31,6 +31,7 @@ export function SelectDateAndHour({
 
   const { user } = useAuth();
   const [selectedDay, setSelectedDay] = useState(new Date());
+  const [selectedHour, setSelectedHour] = useState<number | null>(null);
   const [availableAppointments, setAvailableAppointments] = useState<number[]>(
     []
   );
@@ -39,10 +40,11 @@ export function SelectDateAndHour({
 
   const getAvailableAppointments = useCallback(async () => {
     if (selectedCourt) {
-      const { data, error } = await api.appointment.getByDateAndCourt(
-        selectedDay,
-        selectedCourt.idCourt
-      );
+      const { data, error } =
+        await api.appointment.getAvailableHoursByDateAndCourt(
+          selectedDay,
+          selectedCourt.idCourt
+        );
 
       if (error) {
         toast.error(error);
@@ -53,6 +55,22 @@ export function SelectDateAndHour({
     }
   }, [selectedCourt, selectedDay]);
 
+  const confirmDateAndHour = () => {
+    if (!selectedHour) {
+      toast.error('Selecione um horário');
+      return;
+    }
+
+    const selectedDateAndHour = new Date(selectedDay);
+    selectedDateAndHour.setHours(selectedHour);
+    onNextStep(selectedDateAndHour);
+  };
+
+  const handleDayClick = (day: Date) => {
+    setSelectedDay(day);
+    setSelectedHour(null);
+  };
+
   useEffect(() => {
     getAvailableAppointments();
   }, [selectedCourt, selectedDay, getAvailableAppointments]);
@@ -61,7 +79,7 @@ export function SelectDateAndHour({
     <PageContainer headTitle="Data e Hora">
       <BackHeader title="Escolher data e horário"></BackHeader>
 
-      <Calendar value={selectedDay} onClickDay={setSelectedDay} locale="pt" />
+      <Calendar value={selectedDay} onClickDay={handleDayClick} locale="pt" />
 
       <div className={styles.textArea}>
         <div className={styles.selectedDateLabel}>
@@ -80,6 +98,7 @@ export function SelectDateAndHour({
           <Button
             key={String(hour)}
             type="button"
+            onClick={() => setSelectedHour(hour)}
             label={`${getPaddedNumber(hour)}h00`}
             color="secondary"
           />
@@ -89,7 +108,7 @@ export function SelectDateAndHour({
       <div className={styles.buttonContainer}>
         <Button
           icon={faInfoCircle}
-          onClick={onNextStep}
+          onClick={confirmDateAndHour}
           type="button"
           label="Show, vamos aos detalhes!"
           color="primary"
