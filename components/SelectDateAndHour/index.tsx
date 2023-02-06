@@ -30,7 +30,10 @@ export function SelectDateAndHour({
   usePrivateRoute();
 
   const { user } = useAuth();
-  const [selectedDay, setSelectedDay] = useState(new Date());
+
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const [selectedDay, setSelectedDay] = useState(tomorrow);
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
   const [availableAppointments, setAvailableAppointments] = useState<number[]>(
     []
@@ -75,8 +78,13 @@ export function SelectDateAndHour({
     const brWeekDays = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
 
     const availableDays = selectedCourt?.courtRules.availableDays?.split(',');
+    const isUnavailableDay = !availableDays?.includes(
+      brWeekDays[date.getDay()]
+    );
 
-    return !availableDays?.includes(brWeekDays[date.getDay()]);
+    const isTodayOrBefore = date.getTime() <= new Date().getTime();
+
+    return isTodayOrBefore || isUnavailableDay;
   };
 
   useEffect(() => {
