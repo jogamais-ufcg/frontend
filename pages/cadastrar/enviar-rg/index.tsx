@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { faCheck, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faUserCircle,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import BackHeader from 'components/BackHeader';
@@ -35,7 +39,7 @@ export default function SendIdentity() {
       return;
     }
 
-    router.push('/cadastrar/pendente');
+    router.push('/cadastrar/sucesso');
   };
 
   return (
@@ -85,10 +89,10 @@ export default function SendIdentity() {
 
       <div className={styles.button}>
         <Button
-          icon={faCheck}
+          icon={flow.loading ? faInfoCircle : faCheck}
           onClick={onSubmit}
           type="button"
-          label="Confirmar"
+          label={flow.loading ? 'Enviando...' : 'Confirmar'}
           color="primary"
           disabled={flow.loading}
         />

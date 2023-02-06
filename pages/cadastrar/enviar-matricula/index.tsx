@@ -37,7 +37,7 @@ export default function SendEnrollment() {
       return;
     }
 
-    router.push('/cadastrar/pendente');
+    router.push('/cadastrar/sucesso');
   };
 
   return (
@@ -93,7 +93,7 @@ export default function SendEnrollment() {
           icon={faCheck}
           onClick={onSubmit}
           type="button"
-          label="Confirmar"
+          label={flow.loading ? 'Enviando...' : 'Confirmar'}
           color="primary"
           disabled={flow.loading}
         />

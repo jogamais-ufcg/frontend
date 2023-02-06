@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import logo from 'public/brand/logo.png';
 import hand from 'public/illustrations/hand.svg';
 import styles from './styles.module.css';
@@ -17,7 +16,10 @@ export default function SignInConfirmation() {
       </div>
       <div className={styles.mainInformation}>
         <h1>Cadastro realizado com sucesso!</h1>
-        <p>A sua resposta foi enviada por email para o usuário solicitante.</p>
+        <p>
+          O pedido de confirmação foi enviado por email para o usuário
+          solicitante.
+        </p>
       </div>
 
       <div className={styles.handContainer}>
@@ -30,10 +32,9 @@ export default function SignInConfirmation() {
 
       <div className={styles.buttonsContainer}>
         <Button
-          icon={faArrowLeft}
           type="button"
-          onClick={() => router.push('/login')}
-          label="Voltar à listagem de usuários"
+          onClick={() => router.push('/quadras')}
+          label="👀 Dar uma olhadinha nas quadras"
           color="secondary"
         />
       </div>
