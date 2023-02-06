@@ -71,7 +71,7 @@ export default function Login() {
           icon={faPhone}
           onClick={() =>
             window.open(`https://wa.me/${selectedUser?.phoneNumber}`, '_blank')
-          } //ajustar rota!
+          }
           type="button"
           label="Enviar mensagem"
           color="primary"
