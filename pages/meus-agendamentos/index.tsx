@@ -12,12 +12,7 @@ export default function UserSchedules() {
   const [appointments, setAppointments] = useState([]);
   usePrivateRoute();
   const auth = useAuth();
-  const getDate = (date: string) => {
-    const date2 = new Date(date);
-    const hour = date2.getHours() - 3;
-    date2.setHours(hour);
-    return getReadableDate(date2);
-  };
+
   const getAppointments = useCallback(async () => {
     const id = auth.user?.id;
     const response = await fetchApi(
@@ -28,11 +23,12 @@ export default function UserSchedules() {
     );
 
     setAppointments(response.data);
-  }, []);
+    console.log(response.data);
+  }, [auth]);
 
   useEffect(() => {
     getAppointments();
-  }, []);
+  }, [getAppointments]);
 
   return (
     <PageContainer headTitle="Agendamentos">
@@ -42,7 +38,7 @@ export default function UserSchedules() {
         <ScheduleItem
           key={schedule.startAppointmentDate}
           title={schedule.id.court.name}
-          subtitle={getDate(schedule.startAppointmentDate)}
+          subtitle={getReadableDate(new Date(schedule.startAppointmentDate))}
         />
       ))}
     </PageContainer>

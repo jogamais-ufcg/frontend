@@ -66,6 +66,7 @@ export function SelectDateAndHour({
 
     const selectedDateAndHour = new Date(selectedDay);
     selectedDateAndHour.setHours(selectedHour);
+    selectedDateAndHour.setMinutes(0);
     onNextStep(selectedDateAndHour);
   };
 
