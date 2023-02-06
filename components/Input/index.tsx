@@ -17,12 +17,14 @@ interface InputComponentProps {
   type: 'text' | 'email' | 'password' | 'number' | 'file' | 'tel' | 'textarea';
   placeholder: string;
   fileInputId?: string;
+  disabled?: boolean;
 }
 
 type InputProps = InputComponentProps & {
   label?: string;
   mask?: string | (string | RegExp)[];
   icon?: FontAwesomeIconProps['icon'];
+  disabled?: boolean;
 };
 
 function InputComponent({
@@ -31,6 +33,7 @@ function InputComponent({
   value,
   placeholder,
   fileInputId,
+  disabled,
 }: InputComponentProps) {
   if (type === 'textarea') {
     return (
@@ -45,6 +48,7 @@ function InputComponent({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 }
@@ -122,6 +126,7 @@ function Input(props: InputProps) {
             value={value}
             placeholder={placeholder}
             onChange={handleInputChange}
+            disabled={props.disabled}
           />
         ) : (
           <InputComponent
@@ -130,6 +135,7 @@ function Input(props: InputProps) {
             type={type}
             placeholder={placeholder}
             onChange={handleInputChange}
+            disabled={props.disabled}
           />
         )}
       </div>

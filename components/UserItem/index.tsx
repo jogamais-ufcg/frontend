@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
@@ -9,7 +10,7 @@ interface UserItemProps {
 
 function UserItem({ user }: UserItemProps) {
   return (
-    <div className={styles.container}>
+    <Link href={`/usuarios/${user.email}`} className={styles.container}>
       <div>
         <button className={styles.infos}>
           <h2>{user.name}</h2>
@@ -24,7 +25,7 @@ function UserItem({ user }: UserItemProps) {
           )}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 export default UserItem;
