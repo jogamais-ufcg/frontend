@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import Button from 'components/Button';
 import PageContainer from 'components/PageContainer';
 import BackHeader from 'components/BackHeader';
-import { Calendar } from 'react-calendar';
+import { Calendar, CalendarTileProperties } from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import api from 'services/api';
@@ -71,6 +71,14 @@ export function SelectDateAndHour({
     setSelectedHour(null);
   };
 
+  const isTileDisabled = ({ date }: CalendarTileProperties) => {
+    const brWeekDays = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
+
+    const availableDays = selectedCourt?.courtRules.availableDays?.split(',');
+
+    return !availableDays?.includes(brWeekDays[date.getDay()]);
+  };
+
   useEffect(() => {
     getAvailableAppointments();
   }, [selectedCourt, selectedDay, getAvailableAppointments]);
@@ -79,7 +87,12 @@ export function SelectDateAndHour({
     <PageContainer headTitle="Data e Hora">
       <BackHeader title="Escolher data e horário"></BackHeader>
 
-      <Calendar value={selectedDay} onClickDay={handleDayClick} locale="pt" />
+      <Calendar
+        tileDisabled={isTileDisabled}
+        value={selectedDay}
+        onClickDay={handleDayClick}
+        locale="pt"
+      />
 
       <div className={styles.textArea}>
         <div className={styles.selectedDateLabel}>
