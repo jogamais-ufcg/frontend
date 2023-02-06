@@ -122,6 +122,7 @@ export function SelectDateAndHour({
             onClick={() => setSelectedHour(hour)}
             label={`${getPaddedNumber(hour)}h00`}
             color="secondary"
+            isClicked={selectedHour === hour}
           />
         ))}
       </div>
