@@ -1,41 +1,48 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BackHeader from 'components/BackHeader';
 import PageContainer from 'components/PageContainer';
 import ScheduleItem from 'components/ScheduleItem';
 import { usePrivateRoute } from 'hooks/session';
+import { useCallback, useEffect, useState } from 'react';
 import { getReadableDate } from 'utils/strings';
-
-const mockedSchedules = [
-  {
-    court: 'Quadra de Futsal',
-    date: new Date('2021-02-19T09:30:00.000Z'),
-  },
-  {
-    court: 'Quadra de Tênis',
-    date: new Date('2021-02-19T10:30:00.000Z'),
-  },
-  {
-    court: 'Quadra de Vôlei',
-    date: new Date('2021-02-19T11:30:00.000Z'),
-  },
-  {
-    court: 'Quadra de Beach Tennis',
-    date: new Date('2021-02-19T12:30:00.000Z'),
-  },
-];
+import { useAuth } from 'contexts/auth';
+import { fetchApi } from 'services/api/utils';
 
 export default function UserSchedules() {
+  const [appointments, setAppointments] = useState([]);
   usePrivateRoute();
+  const auth = useAuth();
+  const getDate = (date: string) => {
+    const date2 = new Date(date);
+    const hour = date2.getHours() - 3;
+    date2.setHours(hour);
+    return getReadableDate(date2);
+  };
+  const getAppointments = useCallback(async () => {
+    const id = auth.user?.id;
+    const response = await fetchApi(
+      `/appointments/users/my-appointments?id=${id}`,
+      {
+        method: 'GET',
+      }
+    );
+
+    setAppointments(response.data);
+  }, []);
+
+  useEffect(() => {
+    getAppointments();
+  }, []);
 
   return (
     <PageContainer headTitle="Agendamentos">
       <BackHeader title="Meus agendamentos" />
 
-      {mockedSchedules.map((schedule) => (
+      {appointments.map((schedule: any) => (
         <ScheduleItem
-          key={schedule.court}
-          title={schedule.court}
-          subtitle={getReadableDate(schedule.date)}
-          onDelete={() => console.log('delete')}
+          key={schedule.startAppointmentDate}
+          title={schedule.id.court.name}
+          subtitle={getDate(schedule.startAppointmentDate)}
         />
       ))}
     </PageContainer>
