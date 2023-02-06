@@ -17,6 +17,7 @@ import { getPaddedNumber, getReadableDate } from 'utils/strings';
 import { toast } from 'react-toastify';
 import { usePrivateRoute } from 'hooks/session';
 import { Court } from 'utils/types';
+import { getTomorrowDate } from 'utils/dates';
 
 interface SelectDateAndHourProps {
   onNextStep: (selectedDateAndHour: Date) => void;
@@ -31,9 +32,7 @@ export function SelectDateAndHour({
 
   const { user } = useAuth();
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const [selectedDay, setSelectedDay] = useState(tomorrow);
+  const [selectedDay, setSelectedDay] = useState(getTomorrowDate());
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
   const [availableAppointments, setAvailableAppointments] = useState<number[]>(
     []
