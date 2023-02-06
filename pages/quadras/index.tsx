@@ -56,6 +56,7 @@ export default function Courts() {
   const auth = useAuth();
   const isAdmin = useMemo(() => !!auth.user?.isAdmin, [auth.user]);
   const { courts, getAllCourts } = useCourts();
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     getAllCourts();
@@ -71,6 +72,16 @@ export default function Courts() {
     router.push('/login');
   };
   const handleClose = () => setOpen(false);
+
+  const filteredCourts = useMemo(() => {
+    if (!search) {
+      return courts;
+    }
+
+    return courts.filter((court) =>
+      court.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [courts, search]);
 
   return (
     <div>
@@ -97,10 +108,16 @@ export default function Courts() {
           )}
         </aside>
 
-        <Input type="text" placeholder="Pesquise por nome..." icon={faSearch} />
+        <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Pesquise por nome..."
+          icon={faSearch}
+        />
 
         <div className={styles.courtsContainer}>
-          {courts.map((court, index) => (
+          {filteredCourts.map((court, index) => (
             <CourtItem
               key={court.name}
               index={index}
