@@ -15,7 +15,7 @@ import { useCourts } from 'hooks/courts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import api from 'services/api';
 import { useAuth } from 'contexts/auth';
-import { getReadableDate } from 'utils/strings';
+import { getPaddedNumber, getReadableDate } from 'utils/strings';
 import { toast } from 'react-toastify';
 import { usePrivateRoute } from 'hooks/session';
 
@@ -28,7 +28,9 @@ export default function DateHour() {
   const { selectedCourt, getCourtByName } = useCourts();
   const [selectedDay, setSelectedDay] = useState(new Date());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [availableAppointments, setAvailableAppointments] = useState([]);
+  const [availableAppointments, setAvailableAppointments] = useState<number[]>(
+    []
+  );
 
   const isAdmin = useMemo(() => user?.isAdmin, [user]);
 
@@ -44,7 +46,6 @@ export default function DateHour() {
         return;
       }
 
-      console.log(data);
       setAvailableAppointments(data);
     }
   }, [selectedCourt, selectedDay]);
@@ -78,8 +79,13 @@ export default function DateHour() {
       </div>
 
       <div className={styles.buttonGrid}>
-        {['8h00', '9h30', '11h00', '12h30', '14h00', '15h30'].map((time) => (
-          <Button key={time} type="button" label={time} color="secondary" />
+        {availableAppointments.map((hour) => (
+          <Button
+            key={String(hour)}
+            type="button"
+            label={`${getPaddedNumber(hour)}h00`}
+            color="secondary"
+          />
         ))}
       </div>
 
